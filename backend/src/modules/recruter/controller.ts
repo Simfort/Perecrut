@@ -16,7 +16,6 @@ export class RecruterController {
   }
   async signup(req: Request, res: Response) {
     try {
-      console.log(this.#service);
       const data = req.body;
       const successData = ValidSignupRecruter.parse(data);
       const hashPassword = await bcrypt.hash(successData.password, 10);

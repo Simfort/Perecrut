@@ -1,3 +1,4 @@
 .env
 dist
 perecrut.db
+node_modules

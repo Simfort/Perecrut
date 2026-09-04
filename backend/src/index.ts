@@ -2,7 +2,7 @@ import express from "express";
 import { PORT } from "./shared/constants.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { routerRecruter } from "./modules/recruter/public.js";
+import { routerRecruter } from "./modules/recruter/route.js";
 
 const app = express();
 
