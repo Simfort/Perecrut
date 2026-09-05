@@ -6,14 +6,15 @@ import type { RecruterJWT, RecruterMain } from "./model/types.js";
 import { JWT_SECRET } from "../../shared/constants.js";
 
 export class RecruterService {
-  createUser(data: RecruterMain) {
+  async createUser(data: RecruterMain) {
+    const hashPassword = await bcrypt.hash(data.password, 10);
     const userId = randomUUID();
     db.prepare(
       `--sql
       INSERT INTO recruters (id,firstname,lastname,password,email)
       VALUES(?,?,?,?,?)
       `,
-    ).run(userId, data.firstname, data.lastname, data.password, data.email);
+    ).run(userId, data.firstname, data.lastname, hashPassword, data.email);
     return userId;
   }
   async loginUser(data: RecruterJWT & Pick<RecruterMain, "password">) {
@@ -25,12 +26,12 @@ export class RecruterService {
       `,
       )
       .get(data.email) as Pick<RecruterMain, "password">;
+    console.log(dataFinded, data.password);
     if (!dataFinded?.password) return false;
     const isCompared = await bcrypt.compare(data.password, dataFinded.password);
     return isCompared;
   }
   async auth(token: string) {
-    console.log(1);
     const data = jwt.verify(token, JWT_SECRET) as RecruterJWT;
 
     const hashPassword = db

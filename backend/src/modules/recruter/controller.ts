@@ -3,7 +3,6 @@ import { ValidSignupRecruter, ValidSigninRecruter } from "./model/valid.js";
 import type { RecruterService } from "./service.js";
 import { ZodError } from "zod";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import { JWT_SECRET, NODE_ENV } from "../../shared/constants.js";
 
 export class RecruterController {
@@ -18,11 +17,9 @@ export class RecruterController {
     try {
       const data = req.body;
       const successData = ValidSignupRecruter.parse(data);
-      const hashPassword = await bcrypt.hash(successData.password, 10);
 
-      const userId = this.#service?.createUser({
+      const userId = await this.#service?.createUser({
         ...successData,
-        password: hashPassword,
       });
       const jwtToken = jwt.sign(
         {
