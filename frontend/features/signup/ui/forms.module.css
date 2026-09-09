@@ -23,3 +23,26 @@
   gap: 4px;
   width: 100%;
 }
+.container {
+  display: flex;
+  gap: 20px;
+  flex-basis: 100%;
+}
+.container__password {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  width: 100%;
+}
+.container_showPassword {
+  position: absolute;
+  right: 20px;
+  color: var(--opacity-foreground);
+}
+.container_rightPassword {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}

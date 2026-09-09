@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
+import { Notificate } from "@/shared/ui/Notificate";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
@@ -14,7 +15,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${ubuntu.className}`}>
-      <body>{children}</body>
+      <body>
+        <Notificate />
+        {children}
+      </body>
     </html>
   );
 }

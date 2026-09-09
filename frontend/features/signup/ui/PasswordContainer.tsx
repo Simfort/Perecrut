@@ -1,10 +1,15 @@
 "use client";
 
 import { Eye, EyeClosed } from "lucide-react";
-import styles from "./PasswordContainer.module.css";
+import styles from "./forms.module.css";
 import { useState } from "react";
+import { CreateUserActionState } from "@/entities/recruters";
 
-export const PasswordContainer = () => {
+type PasswordContainerProps = {
+  state: CreateUserActionState;
+};
+
+export const PasswordContainer = ({ state }: PasswordContainerProps) => {
   const [showFlag, setShowFlag] = useState(false);
   return (
     <div className={styles.container}>
@@ -12,9 +17,10 @@ export const PasswordContainer = () => {
         <label htmlFor="firstname">Password</label>
         <div className={styles.container_rightPassword}>
           <input
+            defaultValue={state.data.password}
             type={showFlag ? "text" : "password"}
-            className="inp"
-            name="firstname"
+            className={`inp ${state.error ? (state.error.password ? "invalid" : "valid") : ""}`}
+            name="password"
             placeholder="Password"
           />
           <button
@@ -30,8 +36,15 @@ export const PasswordContainer = () => {
         <label htmlFor="firstname">Confrim Password</label>
         <input
           type="text"
-          className="inp"
-          name="lastname"
+          className={`inp ${
+            state.error
+              ? state.error.confrimPassword || state.error.password
+                ? "invalid"
+                : "valid"
+              : ""
+          }`}
+          name="confrimPassword"
+          defaultValue={state.data.confrimPassword}
           autoComplete="off"
           placeholder="Confrim password"
         />

@@ -12,11 +12,13 @@
   --background: rgb(255, 255, 255);
   --button-radius: 8px;
   --opacity-foreground: rgba(1, 22, 23, 0.446);
+  --success: rgb(0, 155, 0);
 }
 
 body {
   max-width: 100%;
   min-height: 100vh;
+  color: var(--foreground);
 }
 @layer base {
   button {
@@ -62,6 +64,15 @@ body {
     box-shadow: 0 0 2px 0 var(--primary);
   }
 }
+.valid {
+  border-color: var(--success);
+}
+.invalid {
+  border-color: red;
+}
+.error-text {
+  color: red;
+}
 .but-prim {
   background-color: var(--primary);
   color: var(--background);
@@ -77,5 +88,19 @@ body {
   }
   &:active {
     opacity: 0.5;
+  }
+  &:disabled {
+    background-color: var(--accent);
+  }
+}
+.spin {
+  animation: spin 0.5s infinite linear;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

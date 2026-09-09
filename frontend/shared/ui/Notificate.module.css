@@ -1,0 +1,42 @@
+.notificate {
+  border: 2px solid var(--primary);
+  background-color: var(--accent);
+  border-radius: 5px;
+  padding: 10px;
+
+  display: flex;
+  gap: 10px;
+  opacity: 1;
+  animation: left 4s linear forwards;
+}
+
+.warn {
+  border-color: rgb(255, 251, 0);
+  background-color: rgba(128, 111, 0, 0.055);
+}
+.error {
+  border-color: red;
+  background-color: rgba(128, 0, 0, 0.055);
+}
+.container {
+  position: fixed;
+  inset: 0;
+  top: 10px;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+}
+@keyframes left {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
