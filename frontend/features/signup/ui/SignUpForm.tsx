@@ -5,26 +5,20 @@ import styles from "./forms.module.css";
 import { PasswordContainer } from "./PasswordContainer";
 import { useActionState, useEffect } from "react";
 import { createUserAction } from "@/entities/recruters";
-import { CreateUserActionState } from "@/entities/recruters/api/createUserAction";
 import { Loader } from "lucide-react";
 import { useNotificate } from "@/shared/lib/store/useNotificate";
 import { useRouter } from "next/navigation";
 
-const initialState: CreateUserActionState = {
-  data: {
-    firstname: "",
-    lastname: "",
-    password: "",
-    email: "",
-    confrimPassword: "",
-  },
-};
-
 export const SignUpForm = () => {
-  const [state, dispatchAction, isPending] = useActionState(
-    createUserAction,
-    initialState,
-  );
+  const [state, dispatchAction, isPending] = useActionState(createUserAction, {
+    data: {
+      firstname: "",
+      lastname: "",
+      password: "",
+      email: "",
+      confrimPassword: "",
+    },
+  });
   const { setData } = useNotificate();
   const router = useRouter();
 

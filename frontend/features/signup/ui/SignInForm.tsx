@@ -4,24 +4,19 @@ import Link from "next/link";
 import styles from "./forms.module.css";
 
 import { useActionState, useEffect, useState } from "react";
-import { loginUserAction, LoginUserActionState } from "@/entities/recruters";
+import { loginUserAction } from "@/entities/recruters";
 import { Eye, EyeClosed, Loader } from "lucide-react";
 import { useNotificate } from "@/shared/lib/store/useNotificate";
 import { useRouter } from "next/navigation";
 
-const initialState: LoginUserActionState = {
-  data: {
-    password: "",
-    email: "",
-  },
-};
-
 export const SignInForm = () => {
   const [showFlag, setShowFlag] = useState(false);
-  const [state, dispatchAction, isPending] = useActionState(
-    loginUserAction,
-    initialState,
-  );
+  const [state, dispatchAction, isPending] = useActionState(loginUserAction, {
+    data: {
+      password: "",
+      email: "",
+    },
+  });
   const router = useRouter();
   const { setData } = useNotificate();
 
@@ -68,7 +63,8 @@ export const SignInForm = () => {
           type="button"
           onClick={() => setShowFlag(!showFlag)}
           className={styles.container_showPassword}
-          aria-label="Show password">
+          aria-label="Show password"
+        >
           {showFlag ? <EyeClosed /> : <Eye />}
         </button>
       </div>

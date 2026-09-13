@@ -1,7 +1,7 @@
 import { ZodError } from "zod";
 import { Recruter } from "../model/recruter";
 import { ValidSigninRecruter } from "./schemas";
-import { parseZodError, Paths } from "../libs/utils/parseZodError";
+import { parseZodError, Paths } from "@/shared/utils/parseZodError";
 import { BACKEND_URL } from "@/shared/constants";
 
 type RecrutersFields = "email" | "password";
