@@ -15,7 +15,7 @@ export const auth = async () => {
     const data = await res.json();
 
     if (res.ok) {
-      return data.data;
+      return { token: sessionToken, data: data.data };
     }
     console.log(data.error);
     return false;

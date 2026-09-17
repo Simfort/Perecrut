@@ -6,3 +6,4 @@ export {
   loginUserAction,
   type LoginUserActionState,
 } from "./api/loginUserAction";
+export { EMP_TYPES } from "./constants/emp_types";

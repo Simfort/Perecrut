@@ -44,10 +44,11 @@ export const createUserAction = async (
         },
       };
     }
-    const response = await fetch(`${BACKEND_URL}/recruter/signup`, {
+    const response = await fetch(`${BACKEND_URL}/recruters/signup`, {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(validData),
       method: "POST",
+      credentials: "include",
     });
     const responseData = await response.json();
     console.log(responseData);

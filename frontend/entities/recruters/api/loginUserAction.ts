@@ -25,7 +25,7 @@ export const loginUserAction = async (
   try {
     const validData = ValidSigninRecruter.parse(data);
 
-    const response = await fetch(`${BACKEND_URL}/recruter/login`, {
+    const response = await fetch(`${BACKEND_URL}/recruters/login`, {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(validData),
       method: "POST",

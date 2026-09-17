@@ -7,7 +7,7 @@ export const SignUpPage = async () => {
   const authorized = await auth();
   if (authorized) redirect("/vacancies");
   return (
-    <div className={styles.signupPage}>
+    <div className={styles.page}>
       <SignUpForm />
     </div>
   );

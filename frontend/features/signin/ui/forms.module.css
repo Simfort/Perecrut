@@ -1,0 +1,48 @@
+.form {
+  box-shadow: 0 0 4px 0 var(--opacity-foreground);
+  border-radius: 5px;
+  padding-inline: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding-block: 20px;
+}
+.form__title {
+  color: var(--primary);
+  text-align: center;
+}
+.inputsContainer {
+  display: flex;
+  gap: 20px;
+  flex-basis: 100%;
+}
+.inputsContainer__fullname {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+.container {
+  display: flex;
+  gap: 20px;
+  flex-basis: 100%;
+}
+.container__password {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  width: 100%;
+}
+.container_showPassword {
+  position: absolute;
+  right: 20px;
+  color: var(--opacity-foreground);
+}
+.container_rightPassword {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}

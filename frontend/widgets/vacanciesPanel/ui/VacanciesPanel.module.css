@@ -1,0 +1,9 @@
+.panel {
+  display: flex;
+  padding-block: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
+.search {
+  width: 30%;
+}
