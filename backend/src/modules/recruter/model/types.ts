@@ -9,8 +9,8 @@ export interface Recruter {
 }
 export type RecruterMain = Pick<
   Recruter,
-  "firstname" | "lastname" | "email" | "password"
+  "firstname" | "lastname" | "email" | "password"|"id"
 > &
   Partial<Pick<Recruter, "description">>;
 
-export type RecruterJWT = Pick<Recruter, "email">;
+export type RecruterJWT = Pick<Recruter, "email"|"id">;

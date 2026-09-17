@@ -6,7 +6,7 @@ import type { RecruterJWT, RecruterMain } from "./model/types.js";
 import { JWT_SECRET } from "../../shared/constants.js";
 
 export class RecruterService {
-  async createUser(data: RecruterMain) {
+  async createUser(data: Omit<RecruterMain, "id">) {
     const hashPassword = await bcrypt.hash(data.password, 10);
     const userId = randomUUID();
     db.prepare(
@@ -17,31 +17,32 @@ export class RecruterService {
     ).run(userId, data.firstname, data.lastname, hashPassword, data.email);
     return userId;
   }
-  async loginUser(data: RecruterJWT & Pick<RecruterMain, "password">) {
+  async loginUser(data: Pick<RecruterMain, "password" | "email">) {
     const dataFinded = db
       .prepare(
         `--sql
-      SELECT password FROM recruters
+      SELECT id,password FROM recruters
       WHERE email=?
       `,
       )
-      .get(data.email) as Pick<RecruterMain, "password">;
+      .get(data.email) as Pick<RecruterMain, "password" | "id">;
     console.log(dataFinded, data.password);
     if (!dataFinded?.password) return false;
     const isCompared = await bcrypt.compare(data.password, dataFinded.password);
-    return isCompared;
+    return isCompared ? dataFinded.id : false;
   }
   async auth(token: string) {
+    if (!token) return false;
     const data = jwt.verify(token, JWT_SECRET) as RecruterJWT;
 
-    const hashPassword = db
+    const authData = db
       .prepare(
         `--sql
-      SELECT id FROM recruters 
+      SELECT id,email FROM recruters 
       WHERE email=?`,
       )
-      .get(data.email) as string;
+      .get(data.email) as RecruterJWT;
 
-    return !!hashPassword;
+    return authData;
   }
 }
