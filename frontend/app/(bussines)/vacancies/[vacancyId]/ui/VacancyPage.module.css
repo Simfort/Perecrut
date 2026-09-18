@@ -1,0 +1,8 @@
+.page {
+  padding-block: var(--padding-y);
+  padding-inline: var(--padding-x);
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}

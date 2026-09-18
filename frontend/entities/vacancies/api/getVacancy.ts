@@ -4,11 +4,11 @@ import { BACKEND_URL } from "@/shared/constants";
 import { Vacancy } from "../model/vacancy";
 import { cacheTag } from "next/cache";
 
-export const getAll = async (token: string) => {
+export const getVacancy = async (token: string, vacancyId: string) => {
   "use cache";
   cacheTag("vacancies");
 
-  const res = await fetch(`${BACKEND_URL}/vacancies/`, {
+  const res = await fetch(`${BACKEND_URL}/vacancies/${vacancyId}`, {
     credentials: "include",
     headers: {
       Authorization: token,
@@ -18,6 +18,6 @@ export const getAll = async (token: string) => {
     console.log(await res.json());
     return false;
   }
-  const data: { data: Vacancy[] } = await res.json();
+  const data: { data: Vacancy } = await res.json();
   return data.data;
 };

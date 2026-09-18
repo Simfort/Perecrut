@@ -1,14 +1,20 @@
+"use client";
 import { Vacancy } from "@/entities/vacancies";
 import styles from "./vacancies.module.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface VacancyItemProps {
   data: Vacancy;
 }
 
 export const VacancyItem = ({ data }: VacancyItemProps) => {
+  const router = useRouter();
   return (
-    <Link href={`/vacancies/${data.id}/canditate`} className={styles.item}>
+    <div
+      onClick={() => router.push(`/vacancies/${data.id}`)}
+      className={styles.item}
+    >
       <div className={styles.left_panel}>
         <h3>{data.title}</h3> <p> {data.organization}</p>
         <div className={styles.emp_type}>{data.emp_type}</div>
@@ -25,6 +31,6 @@ export const VacancyItem = ({ data }: VacancyItemProps) => {
           Add candidate
         </Link>
       </div>
-    </Link>
+    </div>
   );
 };

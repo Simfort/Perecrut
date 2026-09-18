@@ -7,13 +7,19 @@
 .item {
   padding: 15px;
   border-radius: var(--button-radius);
-  transition: box-shadow 0.2s;
+  transition:
+    box-shadow 0.2s,
+    opacity 0.2s;
   display: flex;
   width: 100%;
   cursor: pointer;
+
   justify-content: space-between;
   &:hover {
-    box-shadow: 0 0px 5px 0px var(--opacity-foreground);
+    box-shadow: 0 2px 5px 0px var(--opacity-foreground);
+  }
+  &:active {
+    opacity: 0.5;
   }
 }
 .button {

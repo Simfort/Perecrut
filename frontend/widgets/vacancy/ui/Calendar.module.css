@@ -1,0 +1,15 @@
+.time_item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.time_list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.block_color {
+  width: 50px;
+  border-radius: var(--button-radius);
+  aspect-ratio: 2/1;
+}
