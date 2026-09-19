@@ -1,4 +1,4 @@
-export const Recruter = `--sql
+export const Recruters = `--sql
     CREATE TABLE IF NOT EXISTS recruters(
         id TEXT NOT NULL PRIMARY KEY,
         firstname TEXT NOT NULL,

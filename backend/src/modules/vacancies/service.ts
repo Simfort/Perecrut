@@ -1,6 +1,11 @@
 import { randomBytes } from "node:crypto";
 import db from "../../shared/db/db.js";
-import type { Vacancy, VacancyMain } from "./model/types.js";
+import type {
+  Vacancy,
+  VacancyFormatted,
+  VacancyMain,
+  VacancyWithCandidate,
+} from "./model/types.js";
 
 export class VacanciesService {
   create(data: VacancyMain, recruter_id: string) {
@@ -35,14 +40,35 @@ export class VacanciesService {
     return data.id;
   }
   getVacancy(id: string, recruter_id: string) {
-    return db
+    const result = db
       .prepare(
         `--sql
-      SELECT * FROM vacancies
-      WHERE id = ? AND recruter_id = ?
+      SELECT v.id,v.times,v.colors,v.interval,v.title,c.firstname,c.lastname,c.color,c.id as candidate_id
+      FROM vacancies as v
+      JOIN  candidates as c
+      ON v.id = c.vacancy_id
+      WHERE v.id = ? AND v.recruter_id = ?
+  
       `,
       )
-      .get(id, recruter_id) as Vacancy;
+      .all(id, recruter_id) as VacancyWithCandidate[];
+    const vacancy = {
+      id: result[0].id,
+      interval: result[0].interval,
+      times: result[0].times,
+      colors: result[0].colors,
+      candidates: [],
+    } as VacancyFormatted;
+    for (const item of result) {
+      const candidate = {
+        id: item.candidate_id,
+        color: item.color,
+        firstname: item.firstname,
+        lastname: item.lastname,
+      };
+      vacancy!.candidates!.push(candidate);
+    }
+    return vacancy;
   }
   getAll(recruter_id: string) {
     return db

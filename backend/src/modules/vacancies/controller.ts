@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import type { VacanciesService } from "./service.js";
-import { RecruterService } from "../recruter/service.js";
+import { RecruterService } from "../recruters/service.js";
 import { ValidCreateVacancy, ValidUpdateVacancy } from "./model/valid.js";
 import { ZodError } from "zod";
 import { getIntervalsHours } from "../../shared/utils/getInterevalsHours.js";
@@ -50,14 +50,14 @@ export class VacanciesController {
   async getVacancy(req: Request, res: Response) {
     try {
       const vacancyId = req.params.id as string;
-
+      console.log(vacancyId);
       const sessionToken =
         req.cookies["session-token"] || req.headers.authorization;
       const recrutersService = new RecruterService();
       const authorized = await recrutersService.auth(sessionToken);
       if (authorized) {
         const vacancy = this.#service?.getVacancy(vacancyId, authorized.id);
-        console.log(vacancy);
+
         return res
           .status(200)
           .json({ message: "Vacancy success getted!", data: vacancy });

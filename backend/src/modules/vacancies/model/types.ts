@@ -13,3 +13,22 @@ export interface Vacancy {
   interval: number;
 }
 export type VacancyMain = Omit<Vacancy, "recruter_id" | "created_at">;
+export type VacancyWithCandidate = Pick<
+  Vacancy,
+  "id" | "colors" | "times" | "interval" | "title"
+> & {
+  candidate_id: string;
+  color: string;
+  firstname: string;
+  lastname: string;
+};
+export type VacancyFormatted = Partial<
+  Pick<Vacancy, "id" | "colors" | "times" | "interval" | "title"> & {
+    candidates: {
+      id: string;
+      color: string;
+      firstname: string;
+      lastname: string;
+    }[];
+  }
+>;
