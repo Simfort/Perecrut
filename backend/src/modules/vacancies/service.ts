@@ -7,8 +7,8 @@ export class VacanciesService {
     const vacancyId = randomBytes(8).toString("base64url");
     db.prepare(
       `--sql
-        INSERT INTO vacancies (id,title,description,organization,salary_max,salary_min,emp_type,recruter_id)
-        VALUES (?,?,?,?,?,?,?,?)
+        INSERT INTO vacancies (id,title,description,organization,salary_max,salary_min,emp_type,recruter_id,times)
+        VALUES (?,?,?,?,?,?,?,?,?)
         `,
     ).run(
       vacancyId,
@@ -19,8 +19,20 @@ export class VacanciesService {
       data.salary_min,
       data.emp_type,
       recruter_id,
+      data.times,
     );
     return vacancyId;
+  }
+  update(data: VacancyMain) {
+    db.prepare(
+      `--sql
+      UPDATE vacancies
+      SET colors = ? , times = ?, interval=?
+      WHERE id = ?
+      `,
+    ).run(data.colors, data.times, data.interval, data.id);
+
+    return data.id;
   }
   getVacancy(id: string, recruter_id: string) {
     return db
@@ -42,6 +54,7 @@ export class VacanciesService {
       )
       .all(recruter_id) as Vacancy[];
   }
+
   delete(id: string) {
     db.prepare(
       `--sql

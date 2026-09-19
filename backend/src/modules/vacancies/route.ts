@@ -10,3 +10,4 @@ routerVacancies.post("/", (req, res) => controller.createVacancy(req, res));
 routerVacancies.get("/", (req, res) => controller.getAll(req, res));
 routerVacancies.get("/:id", (req, res) => controller.getVacancy(req, res));
 routerVacancies.delete("/:id", (req, res) => controller.delete(req, res));
+routerVacancies.put("/:id", (req, res) => controller.updateVacancy(req, res));

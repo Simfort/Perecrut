@@ -1,5 +1,5 @@
 export interface Vacancy {
-  id: string;
+  id?: string;
   title: string;
   description: string;
   recruter_id: string;
@@ -8,5 +8,8 @@ export interface Vacancy {
   salary_max: number;
   organization: string;
   created_at: string;
+  colors?: string;
+  times: string;
+  interval: number;
 }
-export type VacancyMain = Omit<Vacancy, "id" | "recruter_id" | "created_at">;
+export type VacancyMain = Omit<Vacancy, "recruter_id" | "created_at">;

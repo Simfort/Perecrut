@@ -1,6 +1,6 @@
 import z from "zod";
 
-const EMP_TYPES = ["Full-time", "Part-Time", "Contract"];
+const EMP_TYPES = ["Full-time", "Part-time", "Contract"];
 
 export const ValidCreateVacancy = z
   .object({
@@ -20,6 +20,12 @@ export const ValidCreateVacancy = z
       message: "Salary max is not be smaller salary min",
     },
   );
+export const ValidUpdateVacancy = z.object({
+  id: z.string(),
+  colors: z.string(),
+  times: z.string(),
+  interval: z.number(),
+});
 
 //  CREATE TABLE IF NOT EXISTS vacancies(
 //         id TEXT NOT NULL PRIMARY KEY,
