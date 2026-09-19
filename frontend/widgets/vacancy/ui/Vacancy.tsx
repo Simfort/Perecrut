@@ -1,21 +1,33 @@
 "use client";
 import { type Vacancy as IVacancy } from "@/entities/vacancies";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Calendar } from "./Calendar";
+import { useVacancy } from "../lib/store/useVacancy";
 
 interface VacancyProps {
   promise: Promise<IVacancy | false>;
 }
 
 export const Vacancy = ({ promise }: VacancyProps) => {
-  const vacancy = use(promise);
+  const vacancyData = use(promise);
+  const { setVacancy } = useVacancy();
   const [openFlag, setOpenFlag] = useState(false);
-  if (!vacancy) return null;
+  useEffect(() => {
+    if (vacancyData) {
+      const times = JSON.parse(vacancyData.times);
+      const colors = JSON.parse(vacancyData.colors);
+
+      setVacancy({ ...vacancyData, times, colors });
+    }
+  }, [vacancyData]);
+
+  if (!vacancyData) return null;
+
   return (
     <div>
-      <h2>{vacancy.title}</h2>
-      <p>{vacancy.description}</p>
+      <h2>{vacancyData.title}</h2>
+      <p>{vacancyData.description}</p>
       <button onClick={() => setOpenFlag(!openFlag)} className="but-prim">
         Open Calendar {openFlag ? <ChevronDown /> : <ChevronUp />}
       </button>

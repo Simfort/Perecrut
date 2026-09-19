@@ -5,7 +5,7 @@ import { parseZodError, Paths } from "@/shared/utils/parseZodError";
 import { BACKEND_URL } from "@/shared/constants";
 import { Vacancy } from "../model/vacancy";
 import { ValidCreateVacancy } from "./schemas";
-import { revalidateTag } from "next/cache";
+
 import { cookies } from "next/headers";
 
 type VacancyFields =
@@ -27,7 +27,6 @@ export const createVacancyAction = async (
   state: CreateVacancyActionState,
   fd: FormData,
 ): Promise<CreateVacancyActionState> => {
-  revalidateTag("vacancies", "max");
   const data: VacancyMain = {
     title: fd.get("title") as string,
     description: fd.get("description") as string,
@@ -52,7 +51,6 @@ export const createVacancyAction = async (
     if (!res.ok) {
       return { success: false, data: validData };
     }
-    console.log(res.status);
 
     return { success: true };
   } catch (error) {

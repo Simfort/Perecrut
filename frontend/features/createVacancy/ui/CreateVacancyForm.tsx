@@ -2,6 +2,7 @@
 import { useActionState } from "react";
 import styles from "./CreateVacancyForm.module.css";
 import { createVacancyAction } from "@/entities/vacancies";
+import Link from "next/link";
 
 export const CreateVacancyForm = () => {
   const [state, dispatchAction] = useActionState(createVacancyAction, {});
@@ -11,6 +12,7 @@ export const CreateVacancyForm = () => {
       action={dispatchAction}
       className={styles.form}
     >
+      <Link href={"/vacancies"}>Back</Link>
       <div className={styles.first_container}>
         <div>
           <label htmlFor="title">Job Title</label>

@@ -1,22 +1,39 @@
-import { getIntervalsHours } from "@/shared/utils/getInterevalsHours";
-import { CalendarBlock } from "./CalendarBlock";
 import styles from "./Calendar.module.css";
 import ColorsPanel from "./ColorsPanel";
 
+import { CalendarItem } from "./CalendarItem";
+import { useVacancy } from "../lib/store/useVacancy";
+import { updateVacancyAction } from "@/entities/vacancies/api/updateVacancyAction";
+import { CalendarInterval } from "./CalendarInterval";
+
 export const Calendar = () => {
   const data = new Date();
-  const times = getIntervalsHours(60);
+  const { vacancy } = useVacancy();
+  console.log(vacancy);
   return (
     <div>
-      <h3>Calendar</h3>
-      <div>{data.toDateString()}</div>
-      <ColorsPanel />
+      <div className={styles.info_vacancy}>
+        <div>
+          {" "}
+          <h3>Calendar</h3>
+          <div>{data.toDateString()}</div>{" "}
+          <button
+            onClick={async () => {
+              if (vacancy) updateVacancyAction(vacancy);
+            }}
+            className="but-prim"
+          >
+            Save
+          </button>
+        </div>
+
+        <ColorsPanel />
+        <CalendarInterval />
+      </div>
       <div>
         <ul className={styles.time_list}>
-          {times.map((time, index) => (
-            <li className={styles.time_item} key={time}>
-              <time>{time}</time> <CalendarBlock key={time + index} />
-            </li>
+          {vacancy!.times.map((time, index) => (
+            <CalendarItem index={index} time={time} key={index} />
           ))}
         </ul>
       </div>

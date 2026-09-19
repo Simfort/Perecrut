@@ -2,12 +2,8 @@
 
 import { BACKEND_URL } from "@/shared/constants";
 import { Vacancy } from "../model/vacancy";
-import { cacheTag } from "next/cache";
 
 export const getAll = async (token: string) => {
-  "use cache";
-  cacheTag("vacancies");
-
   const res = await fetch(`${BACKEND_URL}/vacancies/`, {
     credentials: "include",
     headers: {

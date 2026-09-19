@@ -8,4 +8,9 @@ export interface Vacancy {
   salary_max: number;
   organization: string;
   created_at: string;
+  colors: string;
+  times: string;
+  interval: number;
 }
+export type ColorsParsed = Record<string, string>;
+export type TimeParsed = Record<string, string>;

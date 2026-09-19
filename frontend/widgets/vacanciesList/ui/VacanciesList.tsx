@@ -10,7 +10,7 @@ interface VacanciesListProps {
 
 export const VacanciesList = ({ promise }: VacanciesListProps) => {
   const vacancies = use(promise);
-  console.log(vacancies);
+
   if (!vacancies) return null;
   return (
     <section className={styles.list}>
