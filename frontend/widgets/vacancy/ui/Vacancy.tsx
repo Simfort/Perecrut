@@ -3,7 +3,7 @@ import { type Vacancy as IVacancy } from "@/entities/vacancies";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { use, useEffect, useState } from "react";
 import { Calendar } from "./Calendar";
-import { useVacancy } from "../lib/store/useVacancy";
+import { useVacancy } from "../../../entities/vacancies/lib/store/useVacancy";
 
 interface VacancyProps {
   promise: Promise<IVacancy | false>;

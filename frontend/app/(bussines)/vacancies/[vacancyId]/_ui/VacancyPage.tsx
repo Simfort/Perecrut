@@ -13,7 +13,7 @@ export const VacancyPage = async ({ params }: VacancyPageProps) => {
   const vacancyId = (await params).vacancyId;
   const authorized = await auth();
   if (!authorized) redirect("/signup");
-  const vacancy = getVacancy(authorized.token, vacancyId);
+  const vacancy = getVacancy(vacancyId);
   return (
     <div className={styles.page}>
       <Suspense fallback={"loading"}>

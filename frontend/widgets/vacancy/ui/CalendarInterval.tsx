@@ -1,6 +1,6 @@
 import { getIntervalsHours } from "@/shared/utils/getInterevalsHours";
 import { useDeferredValue, useEffect, useState } from "react";
-import { useVacancy } from "../lib/store/useVacancy";
+import { useVacancy } from "../../../entities/vacancies/lib/store/useVacancy";
 import { TimeParsed } from "@/entities/vacancies";
 
 export const CalendarInterval = () => {

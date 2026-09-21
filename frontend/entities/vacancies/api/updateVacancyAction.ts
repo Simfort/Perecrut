@@ -1,7 +1,7 @@
 import { BACKEND_URL } from "@/shared/constants";
-import { VacancyFormatted } from "@/widgets/vacancy/lib/store/useVacancy";
+import { VacancyFormattedParsed } from "../lib/store/useVacancy";
 
-export const updateVacancyAction = async (vacancy: VacancyFormatted) => {
+export const updateVacancyAction = async (vacancy: VacancyFormattedParsed) => {
   try {
     const timesJSON = JSON.stringify(vacancy.times);
     const colorsJSON = JSON.stringify(vacancy.colors);
@@ -10,7 +10,6 @@ export const updateVacancyAction = async (vacancy: VacancyFormatted) => {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
       body: JSON.stringify({
         ...vacancy,
         times: timesJSON,

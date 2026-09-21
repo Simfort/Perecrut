@@ -2,7 +2,7 @@ import styles from "./Calendar.module.css";
 import ColorsPanel from "./ColorsPanel";
 
 import { CalendarItem } from "./CalendarItem";
-import { useVacancy } from "../lib/store/useVacancy";
+import { useVacancy } from "../../../entities/vacancies/lib/store/useVacancy";
 import { updateVacancyAction } from "@/entities/vacancies/api/updateVacancyAction";
 import { CalendarInterval } from "./CalendarInterval";
 

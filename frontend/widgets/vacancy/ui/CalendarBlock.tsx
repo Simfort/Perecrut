@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useColor } from "../lib/store/useColor";
+import { useColor } from "../../../entities/vacancies/lib/store/useColor";
 import styles from "./CalendarBlock.module.css";
-import { useVacancy } from "../lib/store/useVacancy";
+import { useVacancy } from "../../../entities/vacancies/lib/store/useVacancy";
 
 interface CalendarBlockProps {
   time: [string, string];
@@ -13,7 +13,7 @@ export const CalendarBlock = ({ time, index }: CalendarBlockProps) => {
   const { setVacancy, vacancy } = useVacancy();
   return (
     <div
-      style={{ backgroundColor: vacancy?.colors[time[1]] }}
+      style={{ backgroundColor: time[1] }}
       onClick={() => {
         const newVacancyTimes = [...vacancy!.times];
         newVacancyTimes[index] = {
