@@ -50,14 +50,9 @@ export class VacanciesController {
   async getVacancy(req: Request, res: Response) {
     try {
       const vacancyId = req.params.id as string;
-      console.log(vacancyId);
-      const sessionToken =
-        req.cookies["session-token"] || req.headers.authorization;
-      const recrutersService = new RecruterService();
-      const authorized = await recrutersService.auth(sessionToken);
-      if (authorized) {
-        const vacancy = this.#service?.getVacancy(vacancyId, authorized.id);
 
+      const vacancy = this.#service?.getVacancy(vacancyId);
+      if (vacancy) {
         return res
           .status(200)
           .json({ message: "Vacancy success getted!", data: vacancy });
@@ -110,15 +105,10 @@ export class VacanciesController {
   async updateVacancy(req: Request, res: Response) {
     try {
       const data = req.body;
-
-      const sessionToken =
-        req.cookies["session-token"] || req.headers.authorization;
-      const recrutersService = new RecruterService();
-      const authorized = await recrutersService.auth(sessionToken);
-      if (authorized) {
-        const validData = ValidUpdateVacancy.parse(data) as VacancyMain;
-        const vacancyId = this.#service?.update(validData);
-
+      console.log(data);
+      const validData = ValidUpdateVacancy.parse(data) as VacancyMain;
+      const vacancyId = this.#service?.update(validData);
+      if (vacancyId) {
         return res
           .status(200)
           .json({ message: "Vacancy success updated!", data: vacancyId });

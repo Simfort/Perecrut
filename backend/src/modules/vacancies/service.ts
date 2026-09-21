@@ -39,7 +39,7 @@ export class VacanciesService {
 
     return data.id;
   }
-  getVacancy(id: string, recruter_id: string) {
+  getVacancy(id: string) {
     const result = db
       .prepare(
         `--sql
@@ -47,11 +47,11 @@ export class VacanciesService {
       FROM vacancies as v
       JOIN  candidates as c
       ON v.id = c.vacancy_id
-      WHERE v.id = ? AND v.recruter_id = ?
+      WHERE v.id = ? 
   
       `,
       )
-      .all(id, recruter_id) as VacancyWithCandidate[];
+      .all(id) as VacancyWithCandidate[];
     const vacancy = {
       id: result[0].id,
       interval: result[0].interval,
