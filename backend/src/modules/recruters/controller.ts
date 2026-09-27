@@ -3,7 +3,11 @@ import { ValidSignupRecruter, ValidSigninRecruter } from "./model/valid.js";
 import type { RecruterService } from "./service.js";
 import { ZodError } from "zod";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET, NODE_ENV } from "../../shared/constants.js";
+import {
+  EMAIL_IS_USED_ERROR,
+  JWT_SECRET,
+  NODE_ENV,
+} from "../../shared/constants.js";
 import { error } from "node:console";
 
 export class RecruterController {
@@ -40,6 +44,13 @@ export class RecruterController {
       if (error instanceof ZodError) {
         return res.status(403).json({ error: "Invalid fields" });
       } else {
+        if (error instanceof Error) {
+          if (
+            error.message.trim() === "UNIQUE constraint failed: recruters.email"
+          ) {
+            return res.status(404).json({ error: EMAIL_IS_USED_ERROR });
+          }
+        }
         return res.status(500).json({ error: "Internal Server Error" });
       }
     }
@@ -77,7 +88,7 @@ export class RecruterController {
     try {
       const sessionToken =
         req.cookies["session-token"] || req.headers.authorization;
-
+      console.log(sessionToken);
       const auth = await this.#service?.auth(sessionToken);
       if (auth) {
         return res.status(200).json({ message: "Success auth", data: auth });

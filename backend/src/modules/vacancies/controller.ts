@@ -50,7 +50,6 @@ export class VacanciesController {
   async getVacancy(req: Request, res: Response) {
     try {
       const vacancyId = req.params.id as string;
-
       const vacancy = this.#service?.getVacancy(vacancyId);
       if (vacancy) {
         return res
@@ -69,7 +68,7 @@ export class VacanciesController {
         req.cookies["session-token"] || req.headers.authorization;
       const recrutersService = new RecruterService();
       const authorized = await recrutersService.auth(sessionToken);
-      console.log(sessionToken);
+
       if (authorized) {
         const vacancies = this.#service?.getAll(authorized.id);
 
