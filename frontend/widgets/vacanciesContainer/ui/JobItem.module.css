@@ -1,0 +1,65 @@
+.item {
+  display: flex;
+  border-radius: var(--button-radius-sec);
+  box-shadow: 0 0 5px 2px var(--shadow);
+  padding: 25px;
+  justify-content: space-between;
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: 0 0 0px 2px var(--secondary);
+  }
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.under {
+  font-weight: normal;
+  font-size: 14px;
+  color: var(--gray);
+}
+.description {
+  font-weight: normal;
+}
+.container_date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: normal;
+  font-size: 14px;
+  color: var(--primary);
+}
+.logo {
+  color: var(--primary);
+}
+.logo_container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.undertitle_container {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.space_decor {
+  height: 5px;
+  border-radius: 100%;
+  aspect-ratio: 1;
+  background-color: var(--gray);
+}
+.right_info {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+}
+.candidates_len {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.salary {
+  color: var(--success);
+}

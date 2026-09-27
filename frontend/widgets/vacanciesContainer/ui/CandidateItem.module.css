@@ -1,0 +1,18 @@
+.item {
+  display: flex;
+  border-radius: var(--button-radius-sec);
+  box-shadow: 0 0 5px 2px var(--shadow);
+  padding: 25px;
+  justify-content: space-between;
+
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: 0 0 0px 2px var(--secondary);
+  }
+}
+.description {
+  font-weight: normal;
+}
+.vacancy {
+  font-weight: normal;
+}

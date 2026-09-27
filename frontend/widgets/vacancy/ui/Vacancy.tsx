@@ -1,12 +1,13 @@
 "use client";
-import { type Vacancy as IVacancy } from "@/entities/vacancies";
+
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { use, useEffect, useState } from "react";
 import { Calendar } from "./Calendar";
 import { useVacancy } from "../../../entities/vacancies/lib/store/useVacancy";
+import { VacancyFormatted } from "@/entities/vacancies";
 
 interface VacancyProps {
-  promise: Promise<IVacancy | false>;
+  promise: Promise<VacancyFormatted | false>;
 }
 
 export const Vacancy = ({ promise }: VacancyProps) => {

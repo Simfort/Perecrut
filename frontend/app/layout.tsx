@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Notificate } from "@/shared/ui/Notificate";
+import { Footer } from "@/widgets/footer";
 
 const inter = Inter({
   weight: ["300", "400", "500", "700"],
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <Notificate />
         {children}
+        <Footer />
       </body>
     </html>
   );

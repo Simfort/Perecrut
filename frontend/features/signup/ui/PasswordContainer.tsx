@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, EyeClosed } from "lucide-react";
+import { Eye, EyeClosed, Lock } from "lucide-react";
 import styles from "./forms.module.css";
 import { useState } from "react";
 import { CreateUserActionState } from "@/entities/recruters";
@@ -16,10 +16,11 @@ export const PasswordContainer = ({ state }: PasswordContainerProps) => {
       <div className={styles.container__password}>
         <label htmlFor="firstname">Password</label>
         <div className={styles.container_rightPassword}>
+          <Lock size={20} className={styles.logo} />
           <input
             defaultValue={state.data.password}
             type={showFlag ? "text" : "password"}
-            className={`inp ${state.error ? (state.error.password ? "invalid" : "valid") : ""}`}
+            className={`inp ${state.error ? (state.error.password ? "invalid" : "valid") : ""} ${styles.form_input}`}
             name="password"
             placeholder="Password"
           />
@@ -27,7 +28,8 @@ export const PasswordContainer = ({ state }: PasswordContainerProps) => {
             type="button"
             onClick={() => setShowFlag(!showFlag)}
             className={styles.container_showPassword}
-            aria-label="Show password">
+            aria-label="Show password"
+          >
             {showFlag ? <EyeClosed /> : <Eye />}
           </button>
         </div>

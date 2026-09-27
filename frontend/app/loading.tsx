@@ -1,7 +1,5 @@
+import { LoadingPage } from "./_ui/LoadingPage";
+
 export default function Loading() {
-  return (
-    <div>
-      <h1>Penis</h1>
-    </div>
-  );
+  return <LoadingPage />;
 }

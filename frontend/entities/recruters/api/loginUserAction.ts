@@ -21,7 +21,7 @@ export const loginUserAction = async (
     email: fd.get("email") as string,
     password: fd.get("password") as string,
   };
-  console.log(data);
+
   try {
     const validData = ValidSigninRecruter.parse(data);
 
@@ -33,7 +33,6 @@ export const loginUserAction = async (
       credentials: "include",
     });
     const responseData = await response.json();
-    console.log(responseData);
 
     switch (response.status) {
       case 403:

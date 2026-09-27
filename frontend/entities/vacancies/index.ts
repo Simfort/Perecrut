@@ -7,3 +7,4 @@ export type {
 } from "./model/vacancy";
 export { createVacancyAction } from "./api/createVacancyAction";
 export { useVacancy } from "./lib/store/useVacancy";
+export type { VacancyToGetAllFormatted } from "./api/getAll";

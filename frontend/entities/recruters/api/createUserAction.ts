@@ -4,7 +4,7 @@ import { ValidSignupRecruter } from "./schemas";
 import { parseZodError, Paths } from "@/shared/utils/parseZodError";
 import { BACKEND_URL } from "@/shared/constants";
 
-type RecrutersFields = "firstname" | "lastname" | "email" | "password";
+export type RecrutersFields = "firstname" | "lastname" | "email" | "password";
 type RecruterMain = Pick<Recruter, RecrutersFields> & {
   confrimPassword: string;
 };
@@ -28,7 +28,6 @@ export const createUserAction = async (
     password: fd.get("password") as string,
     confrimPassword: fd.get("confrimPassword") as string,
   };
-  console.log(data);
   try {
     const validData = ValidSignupRecruter.parse(data);
     if (validData.password !== validData.confrimPassword) {
@@ -51,8 +50,8 @@ export const createUserAction = async (
       credentials: "include",
     });
     const responseData = await response.json();
-    console.log(responseData);
-    if (responseData?.error === emailUsedError) {
+
+    if (responseData?.error?.trim() === emailUsedError) {
       return {
         data,
         success: false,

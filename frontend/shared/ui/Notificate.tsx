@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { useNotificate } from "../lib/store/useNotificate";
 import styles from "./Notificate.module.css";
-import { CheckCircle, MailWarning } from "lucide-react";
 
 export const Notificate = () => {
   const { data, setData } = useNotificate();
@@ -17,12 +16,11 @@ export const Notificate = () => {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [data]);
+  }, [data?.description, data?.status, data?.title]);
   if (data)
     return (
-      <div className={styles.container}>
+      <div aria-live="assertive" aria-modal className={styles.container}>
         <div className={`${styles.notificate} ${styles[data.status]}`}>
-          {data.status ? <CheckCircle /> : <MailWarning />}
           <div>
             <h5 className={styles.title}>{data.title}</h5>
             <h6 className={styles.description}>{data.description}</h6>

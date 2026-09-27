@@ -1,17 +1,16 @@
 .form {
   box-shadow: 0 0 4px 0 var(--opacity-foreground);
-  border-radius: 5px;
-  padding-inline: 50px;
+  border-radius: var(--button-radius);
   display: flex;
+  color: white;
+  background-color: var(--primary);
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
+  max-width: 500px;
+  padding: 40px;
+  font-weight: normal;
+}
 
-  padding-block: 20px;
-}
-.form__title {
-  color: var(--primary);
-  text-align: center;
-}
 .inputsContainer {
   display: flex;
   gap: 20px;
@@ -20,8 +19,9 @@
 .inputsContainer__fullname {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 20px;
   width: 100%;
+  font-weight: bold;
 }
 .container {
   display: flex;
@@ -31,18 +31,55 @@
 .container__password {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-
+  gap: 20px;
+  font-weight: bold;
   width: 100%;
 }
 .container_showPassword {
   position: absolute;
   right: 20px;
-  color: var(--opacity-foreground);
+  color: var(--secondary);
 }
 .container_rightPassword {
   position: relative;
   display: flex;
   justify-content: end;
   align-items: center;
+  font-weight: bold;
+}
+.label_password {
+  font-weight: bold;
+}
+.link {
+  color: var(--accent);
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.form_input {
+  padding-left: 40px;
+}
+
+.logo {
+  position: absolute;
+  color: var(--primary);
+  left: 10px;
+}
+
+.logo_container {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.form__title {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    flex-direction: column;
+  }
 }

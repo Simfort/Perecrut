@@ -1,0 +1,26 @@
+.panel {
+  display: flex;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+}
+.input {
+  padding-left: 40px;
+  background-color: var(--secondary-accent);
+}
+.button {
+  width: 20%;
+  border-radius: var(--button-radius-sec);
+}
+.input_container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  position: relative;
+}
+.logo {
+  color: var(--primary);
+  position: absolute;
+  left: 10px;
+}

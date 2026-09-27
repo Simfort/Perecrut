@@ -1,9 +1,21 @@
-import { HomeHero } from "@/widgets";
+import {
+  Features,
+  Header,
+  HomeHero,
+  HowInterviewly,
+  HowItWorks,
+} from "@/widgets";
 
 export const HomePage = () => {
   return (
     <div>
-      <HomeHero />
+      <Header />
+      <main>
+        <HomeHero />
+        <Features />
+        <HowItWorks />
+        <HowInterviewly />
+      </main>
     </div>
   );
 };

@@ -1,0 +1,128 @@
+.hwt {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-block: var(--padding-y);
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  padding-inline: var(--padding-x);
+}
+.undertitle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  color: var(--primary);
+  &::before {
+    content: "";
+    display: inline-block;
+    background-color: var(--primary);
+    height: 2px;
+    width: 30px;
+  }
+  &::after {
+    content: "";
+    display: inline-block;
+    background-color: var(--primary);
+    height: 2px;
+    width: 30px;
+  }
+}
+.title {
+  max-width: 30%;
+}
+.description {
+  font-weight: normal;
+  max-width: 30%;
+}
+
+.decor_1 {
+  position: absolute;
+  left: -100px;
+  bottom: 100px;
+  z-index: -1;
+  width: 20%;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  background-color: var(--primary-opacity);
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+}
+.step {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  border-radius: 5px;
+  gap: 20px;
+  background-color: var(--secondary-accent);
+}
+.step_description {
+  font-weight: normal;
+}
+.step_info {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: start;
+  text-align: start;
+}
+.step_names {
+  display: flex;
+}
+.step_num {
+  padding: 10px;
+  background-color: var(--primary);
+  border-radius: 100%;
+  width: 40px;
+
+  aspect-ratio: 1;
+  color: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step_logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent);
+  padding: 10px;
+  border-radius: 100%;
+  color: var(--primary);
+}
+.arrow {
+  color: var(--primary);
+}
+
+@media screen and (max-width: 1100px) {
+  .title,
+  .description {
+    max-width: 100%;
+  }
+  .steps {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .step {
+    width: 100%;
+  }
+  .step_info {
+    flex-direction: column;
+  }
+  .step_logo {
+    display: none;
+  }
+  .arrow {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+}

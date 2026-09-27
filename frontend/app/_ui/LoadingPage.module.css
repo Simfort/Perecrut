@@ -1,0 +1,21 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading_container {
+  display: flex;
+  gap: 5px;
+  & > div {
+    width: 10px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+  }
+  &:nth-child(1n) {
+    background-color: var(--accent);
+  }
+  &:nth-child(2n) {
+    background-color: var(--primary);
+  }
+}

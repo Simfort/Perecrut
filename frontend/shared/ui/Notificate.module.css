@@ -1,9 +1,9 @@
 .notificate {
   border: 2px solid var(--primary);
-  background-color: var(--accent);
-  border-radius: 5px;
-  padding: 10px;
-
+  background-color: var(--background);
+  border-radius: var(--button-radius-sec);
+  padding: 20px;
+  max-width: 400px;
   display: flex;
   gap: 10px;
   opacity: 1;
@@ -12,20 +12,23 @@
 
 .warn {
   border-color: rgb(255, 251, 0);
-  background-color: rgba(128, 111, 0, 0.055);
 }
 .error {
-  border-color: red;
-  background-color: rgba(128, 0, 0, 0.055);
+  border-color: var(--error);
 }
 .container {
   position: fixed;
   inset: 0;
-  top: 10px;
+  top: 102px;
   height: max-content;
+
   display: flex;
   justify-content: center;
 }
+.description {
+  font-weight: normal;
+}
+
 @keyframes left {
   0% {
     opacity: 0;
