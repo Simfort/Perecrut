@@ -2,6 +2,12 @@
   min-height: 100vh;
 }
 .main {
-  padding-inline: var(--padding-x);
   padding-block: var(--padding-y);
+  padding-inline: var(--padding-x);
+}
+
+@media screen and (max-width: 1000px) {
+  .main {
+    padding: 0;
+  }
 }

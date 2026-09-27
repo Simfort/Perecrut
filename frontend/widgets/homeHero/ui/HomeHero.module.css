@@ -2,7 +2,7 @@
   padding-inline: var(--padding-x);
   padding-block: var(--padding-y);
   display: flex;
-
+  min-height: 84vh;
   justify-content: space-between;
 }
 .heroSection__undertitle {

@@ -1,13 +1,11 @@
 .container {
   background-color: var(--light);
-  height: 85vh;
+  height: 80vh;
   width: 60%;
   border-radius: var(--button-radius-sec);
   padding: 20px;
-  margin-left: auto;
-
-  margin-right: auto;
   overflow-y: auto;
+  order: 3;
 }
 .candidates {
   margin-top: 15px;

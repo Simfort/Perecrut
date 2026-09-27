@@ -24,7 +24,9 @@ export const JobItem = ({ vacancy }: JobItemProps) => {
           </div>
         </div>
 
-        <p className={styles.description}>{vacancy.description}</p>
+        <p className={styles.description}>
+          {vacancy.description.slice(0, 8)}...
+        </p>
         <div className={styles.container_date}>
           <Calendar size={20} className={styles.logo} />{" "}
           <p>{new Date(vacancy.created_at).toLocaleDateString()}</p>

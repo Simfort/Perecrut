@@ -8,6 +8,7 @@ import styles from "./VacanciesContainer.module.css";
 import { useCurrentContainer } from "../lib/store/useCurrentContainer";
 import { CandidatesContainer } from "./CandidatesContainer";
 import { JobsContainer } from "./JobsContainer";
+import { QuickStats } from "./QuickStats";
 
 interface VacanciesContainerProps {
   promise: Promise<VacancyToGetAllFormatted[] | false>;
@@ -34,6 +35,7 @@ export const VacanciesContainer = ({ promise }: VacanciesContainerProps) => {
     <section className={styles.container}>
       <VacanciesInfoAside />
       <Container />
+      <QuickStats />
     </section>
   );
 };
