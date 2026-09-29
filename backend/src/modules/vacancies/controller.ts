@@ -3,7 +3,6 @@ import type { VacanciesService } from "./service.js";
 import { RecruterService } from "../recruters/service.js";
 import { ValidCreateVacancy, ValidUpdateVacancy } from "./model/valid.js";
 import { ZodError } from "zod";
-import { getIntervalsHours } from "../../shared/utils/getInterevalsHours.js";
 import type { VacancyMain } from "./model/types.js";
 
 export class VacanciesController {
@@ -23,9 +22,7 @@ export class VacanciesController {
       const recrutersService = new RecruterService();
       const authorized = await recrutersService.auth(sessionToken);
       if (authorized) {
-        const times = JSON.stringify(
-          getIntervalsHours(30).map((time) => ({ [time]: null })),
-        );
+        const times = JSON.stringify({});
         const validData = {
           ...ValidCreateVacancy.parse(data),
           times,
@@ -104,7 +101,6 @@ export class VacanciesController {
   async updateVacancy(req: Request, res: Response) {
     try {
       const data = req.body;
-      console.log(data);
       const validData = ValidUpdateVacancy.parse(data) as VacancyMain;
       const vacancyId = this.#service?.update(validData);
       if (vacancyId) {

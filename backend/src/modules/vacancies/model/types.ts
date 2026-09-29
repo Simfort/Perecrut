@@ -17,7 +17,13 @@ export interface Vacancy {
 export type VacancyMain = Omit<Vacancy, "recruter_id" | "created_at">;
 export type VacancyWithCandidate = Pick<
   Vacancy,
-  "id" | "colors" | "times" | "interval" | "title" | "description"
+  | "id"
+  | "colors"
+  | "times"
+  | "interval"
+  | "title"
+  | "description"
+  | "created_at"
 > & {
   candidate_id: string;
   color: string;
@@ -27,7 +33,13 @@ export type VacancyWithCandidate = Pick<
 export type VacancyFormatted = Partial<
   Pick<
     Vacancy,
-    "id" | "colors" | "times" | "interval" | "title" | "description"
+    | "id"
+    | "colors"
+    | "times"
+    | "interval"
+    | "title"
+    | "description"
+    | "created_at"
   > & {
     candidates: {
       id: string;

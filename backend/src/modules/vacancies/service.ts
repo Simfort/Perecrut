@@ -44,7 +44,7 @@ export class VacanciesService {
     const result = db
       .prepare(
         `--sql
-      SELECT v.description,v.id,v.times,v.colors,v.interval,v.title,c.firstname,c.lastname,c.color,c.id as candidate_id
+      SELECT v.created_at,v.description,v.id,v.times,v.colors,v.interval,v.title,c.firstname,c.lastname,c.color,c.id as candidate_id
       FROM vacancies as v
      LEFT JOIN  candidates as c
       ON v.id = c.vacancy_id
@@ -61,6 +61,7 @@ export class VacanciesService {
       candidates: [],
       title: result[0].title,
       description: result[0].description,
+      created_at: result[0].created_at,
     } as VacancyFormatted;
     for (const item of result) {
       const candidate = {
