@@ -23,7 +23,7 @@ export const Calendar = () => {
       </div>
       <div>
         <ul className={styles.time_list}>
-          {vacancy!.times.map((time, index) => (
+          {vacancy!.times[data.toDateString()].map((time, index) => (
             <CalendarItem index={index} time={time} key={index} />
           ))}
         </ul>

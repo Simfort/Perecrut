@@ -1,0 +1,31 @@
+.section {
+  width: 100%;
+  padding: 20px;
+  border-radius: var(--button-radius-sec);
+  box-shadow: 0 0 2px 3px var(--shadow);
+  background-color: var(--light);
+  max-height: 80vh;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+}
+.button {
+  position: sticky;
+  z-index: 9;
+  top: 0;
+  border-radius: var(--button-radius-sec);
+}
+.decor {
+  width: 100%;
+  height: 20px;
+  position: sticky;
+  z-index: 9;
+  top: -20px;
+
+  backdrop-filter: blur(10px);
+}
+@media screen and (max-width: 500px) {
+  .section {
+    max-height: 100vh;
+  }
+}

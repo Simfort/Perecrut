@@ -1,7 +1,6 @@
-import { useState } from "react";
-
 import styles from "./CalendarBlock.module.css";
 import { useVacancy } from "@/entities/vacancies/lib/store/useVacancy";
+import { useDate } from "@/shared/lib/store/useDate";
 
 interface CalendarBlockProps {
   time: [string, string];
@@ -10,12 +9,13 @@ interface CalendarBlockProps {
 
 export const CalendarBlock = ({ time, index }: CalendarBlockProps) => {
   const { setVacancy, vacancy } = useVacancy();
+  const { date } = useDate();
   const handleClick = () => {
     const color = localStorage.getItem("color");
     if (!time[1] || time[1] === color) {
-      const newVacancyTimes = [...vacancy!.times];
-      console.log(time[1], localStorage.getItem("color"));
-      newVacancyTimes[index] = {
+      const dateString = date.toDateString();
+      const newVacancyTimes = { ...vacancy?.times };
+      newVacancyTimes[dateString][index] = {
         [time[0]]: color === time[1] ? "" : color || "",
       };
       const newVacancies = {

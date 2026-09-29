@@ -1,0 +1,52 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.undertitle {
+  font-weight: normal;
+}
+.underline {
+  background-color: var(--primary);
+  height: 4px;
+  width: 100px;
+}
+.description {
+  font-weight: normal;
+}
+.instructions {
+  border-radius: var(--button-radius-sec);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 2px 3px var(--shadow);
+  background-color: var(--light);
+}
+.instruction {
+  gap: 10px;
+  display: flex;
+}
+.info_text {
+  font-size: 14px;
+  font-weight: normal;
+}
+.logo {
+  height: 40px;
+  width: 40px;
+  background-color: var(--accent);
+  border-radius: 100%;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info_copy {
+  font-weight: normal;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: var(--primary);
+  border-radius: var(--button-radius-sec);
+  padding: 10px;
+  font-size: 14px;
+}

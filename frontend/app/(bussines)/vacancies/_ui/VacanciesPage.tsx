@@ -13,7 +13,6 @@ export const VacanciesPage = async () => {
   const vacancies = getAll(authorized.token);
   return (
     <div className={styles.page}>
-      <Header />
       <main className={styles.main}>
         <Suspense fallback="loading">
           <VacanciesContainer promise={vacancies} />

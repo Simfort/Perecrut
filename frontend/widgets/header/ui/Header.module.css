@@ -6,7 +6,7 @@
   padding-block: 20px;
   position: sticky;
   top: 0;
-  z-index: 9;
+  z-index: 10;
   background-color: var(--background);
 }
 .nav {
@@ -60,7 +60,7 @@
   width: 100%;
   padding: 50px;
   background-color: var(--background);
-  z-index: 10;
+  z-index: 11;
   transition: transform 0.5s;
   transform: translateX(0);
 }
@@ -73,7 +73,7 @@
 .burger_button {
   position: relative;
 
-  z-index: 11;
+  z-index: 12;
 }
 
 .burger_link {

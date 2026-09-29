@@ -1,19 +1,47 @@
-.time_item {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.time_list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.block_color {
-  width: 50px;
-  border-radius: var(--button-radius);
-  aspect-ratio: 2/1;
-}
 .info_vacancy {
   display: flex;
   gap: 40px;
+  padding-top: 20px;
+  align-items: center;
+}
+.info_panel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.info_copy {
+  font-weight: normal;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: var(--primary);
+  border-radius: var(--button-radius-sec);
+  padding: 10px;
+  margin: 10px;
+  gap: 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .info_vacancy {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .settings {
+    margin-left: 0;
+  }
 }

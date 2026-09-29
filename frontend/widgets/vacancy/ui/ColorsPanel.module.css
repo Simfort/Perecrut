@@ -1,0 +1,74 @@
+.panel {
+  position: relative;
+  align-self: flex-end;
+}
+.block_color {
+  width: 10px;
+  border-radius: var(--button-radius);
+  height: 10px;
+}
+.candidate_color {
+  width: 50px;
+  border-radius: var(--button-radius);
+  aspect-ratio: 2/1;
+  transition: 0.2s;
+  color: var(--accent);
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.button {
+  display: flex;
+  padding: 5px;
+
+  width: 200px;
+  justify-content: space-between;
+  border-radius: var(--button-radius);
+  align-items: center;
+  gap: 5px;
+  color: var(--light);
+  background-color: var(--primary);
+}
+.current_color {
+  padding: 5px;
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  color: var(--primary);
+  background-color: var(--accent);
+  border-radius: var(--button-radius);
+}
+.modal {
+  border: 1px solid var(--primary);
+  color: var(--accent);
+  position: absolute;
+  border-radius: var(--button-radius-sec);
+  padding: 10px;
+  box-shadow: -2px 2px 1px 1px var(--shadow);
+  width: 100%;
+  display: flex;
+  background-color: var(--primary);
+  bottom: 40px;
+  flex-direction: column;
+  gap: 5px;
+}
+.colors {
+  display: flex;
+  padding: 5px;
+  border-radius: var(--button-radius-sec);
+  gap: 5px;
+  background-color: var(--accent);
+  flex-wrap: wrap;
+}
+
+.active {
+  border: 2px solid var(--primary);
+}
+@media screen and (max-width: 500px) {
+  .button {
+    width: 100%;
+  }
+  .panel {
+    width: 100%;
+  }
+}

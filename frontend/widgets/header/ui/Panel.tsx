@@ -17,7 +17,7 @@ export const Panel = ({ className }: PanelProps) => {
       }
     });
   }, []);
-  console.log(authUser);
+
   if (authUser)
     return (
       <Link

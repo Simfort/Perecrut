@@ -2,10 +2,13 @@ import { getIntervalsHours } from "@/shared/utils/getInterevalsHours";
 import { useDeferredValue, useEffect, useState } from "react";
 import { useVacancy } from "../../../entities/vacancies/lib/store/useVacancy";
 import { TimeParsed } from "@/entities/vacancies";
+import styles from "./CalendarInterval.module.css";
+import { useDate } from "@/shared/lib/store/useDate";
 
 export const CalendarInterval = () => {
   const { vacancy, setVacancy } = useVacancy();
   const [interval, setInterval] = useState(String(vacancy?.interval));
+  const { date } = useDate();
   const deffInterval = useDeferredValue(interval);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInterval(e.target.value);
@@ -14,9 +17,12 @@ export const CalendarInterval = () => {
     const numInterval = Number(deffInterval);
     if (!numInterval || isNaN(numInterval) || vacancy!.interval === numInterval)
       return;
-    const times: TimeParsed[] = getIntervalsHours(numInterval).map((value) => ({
-      [value]: "",
-    }));
+    const times: TimeParsed = {
+      ...vacancy?.times,
+      [date.toDateString()]: getIntervalsHours(numInterval).map((value) => ({
+        [value]: "",
+      })),
+    };
     setVacancy({
       ...vacancy!,
       times,
@@ -25,13 +31,14 @@ export const CalendarInterval = () => {
   }, [deffInterval]);
   return (
     <div>
-      <label htmlFor="">Interval</label>
+      <label htmlFor="interval">Interval</label>
       <input
+        name="interval"
         value={interval}
         onChange={handleChange}
         type="number"
         min={0}
-        className="inp"
+        className={`inp ${styles.input}`}
       />
     </div>
   );

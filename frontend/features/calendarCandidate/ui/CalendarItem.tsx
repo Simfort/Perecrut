@@ -3,7 +3,7 @@ import styles from "./Calendar.module.css";
 import { CalendarBlock } from "./CalendarBlock";
 
 interface CalendarItemProps {
-  time: TimeParsed;
+  time: Record<string, string>;
   index: number;
 }
 

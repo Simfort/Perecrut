@@ -1,0 +1,18 @@
+.button {
+  font-weight: normal;
+  cursor: pointer;
+  background-color: var(--accent);
+  color: var(--primary);
+  border-radius: var(--button-radius-sec);
+  padding: 10px;
+
+  transition: background-color 0.2s;
+  gap: 10px;
+  font-size: 14px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+.copy {
+  background-color: var(--primary-opacity);
+}

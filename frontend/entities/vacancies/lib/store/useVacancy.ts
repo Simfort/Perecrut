@@ -11,7 +11,7 @@ export interface VacancyFormattedParsed extends Omit<
   "colors" | "times"
 > {
   colors: ColorsParsed;
-  times: TimeParsed[];
+  times: TimeParsed;
 }
 
 interface UseVacancy {

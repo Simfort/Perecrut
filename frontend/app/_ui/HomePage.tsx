@@ -9,7 +9,6 @@ import {
 export const HomePage = () => {
   return (
     <div>
-      <Header />
       <main>
         <HomeHero />
         <Features />

@@ -23,7 +23,9 @@
   --error: rgb(247, 175, 175);
   --light: white;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   max-width: 100%;
   min-height: 100vh;
