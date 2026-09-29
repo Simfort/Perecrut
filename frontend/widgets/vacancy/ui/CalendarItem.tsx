@@ -1,8 +1,8 @@
-import { useVacancy, type TimeParsed } from "@/entities/vacancies";
+import { useVacancy } from "@/entities/vacancies";
 import styles from "./CalendarItem.module.css";
 import { useColor } from "@/entities/vacancies/lib/store/useColor";
 import { Plus } from "lucide-react";
-import { useDate } from "../../../shared/lib/store/useDate";
+import { useDate } from "@/shared/lib/store/useDate";
 
 interface CalendarItemProps {
   time: Record<string, string>;
@@ -34,20 +34,24 @@ export const CalendarItem = ({ time, index }: CalendarItemProps) => {
     <li className={styles.time_item}>
       <time>{entries[0]}</time>{" "}
       <button
-        style={{ backgroundColor: entries[1] }}
+        style={{
+          borderColor: entries[1],
+        }}
         onClick={handleClick}
-        className={styles.calendar_block}
+        className={`${styles.calendar_block} ${currentCandidate ? styles.active : ""}`}
       >
-        <p
-          className={
-            currentCandidate ? styles.active_text : styles.unactive_text
-          }
-        >
+        <div
+          className={styles.ball}
+          style={{ backgroundColor: entries[1] }}
+          aria-label={`Color time ${entries[1]}`}
+        ></div>
+        <p className={styles.text}>
           {currentCandidate ? (
             `${currentCandidate?.firstname} ${currentCandidate.lastname}`
           ) : (
             <>
-              Add color <Plus className={styles.logo} />
+              {entries[1] ? "Other" : "Add color"}{" "}
+              <Plus className={styles.logo} />
             </>
           )}
         </p>

@@ -38,12 +38,14 @@
   border-radius: 100%;
   padding: 7px;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
 }
 .info_copy {
   font-weight: normal;
   cursor: pointer;
+
   background-color: var(--accent);
   color: var(--primary);
   border-radius: var(--button-radius-sec);

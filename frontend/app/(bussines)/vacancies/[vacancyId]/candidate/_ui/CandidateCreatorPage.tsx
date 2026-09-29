@@ -14,7 +14,6 @@ export const CandidateCreatorPage = async ({
   if (!vacancy) redirect("/");
   return (
     <div className={styles.page}>
-      <h2>Candidate Creator</h2>
       <CandidateContainer vacancyData={vacancy} />
     </div>
   );

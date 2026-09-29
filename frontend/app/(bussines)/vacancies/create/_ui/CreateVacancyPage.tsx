@@ -8,7 +8,6 @@ export const CreateVacancyPage = async () => {
   if (!authorized) redirect("/signup");
   return (
     <div className={styles.page}>
-      <h1>Create</h1>
       <CreateVacancyForm />
     </div>
   );

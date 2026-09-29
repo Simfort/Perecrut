@@ -13,7 +13,6 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  max-width: 180px;
 }
 .under {
   font-weight: normal;
@@ -66,4 +65,9 @@
 .salary {
   color: var(--success);
   word-break: break-all;
+}
+@media screen and (max-width: 500px) {
+  .info {
+    max-width: 200px;
+  }
 }

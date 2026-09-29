@@ -1,7 +1,7 @@
 "use client";
 
 import { useVacancy, VacancyFormatted } from "@/entities/vacancies";
-
+import styles from "./CandidateContainer.module.css";
 import { CalendarCandidate } from "@/features/calendarCandidate";
 import { CandidateCreatorForm } from "@/features/createCandidate";
 import { useSearchParams } from "next/navigation";
@@ -25,5 +25,5 @@ export const CandidateContainer = ({ vacancyData }: CalendarContainerProps) => {
   if (!vacancy) return null;
   const CurrentComponent =
     step === 0 ? <CandidateCreatorForm /> : <CalendarCandidate />;
-  return <div>{CurrentComponent}</div>;
+  return <section className={styles.section}>{CurrentComponent}</section>;
 };

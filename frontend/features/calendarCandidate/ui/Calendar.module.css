@@ -1,19 +1,26 @@
-.time_item {
+.info_vacancy {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   align-items: center;
+  padding-bottom: 10px;
+  flex-direction: column;
+}
+.calendar {
+  width: 100%;
+  padding: 20px;
+  border-radius: var(--button-radius-sec);
+  box-shadow: 0 0 2px 3px var(--shadow);
+  background-color: var(--light);
+  max-height: 80vh;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
 }
 .time_list {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
-.block_color {
-  width: 50px;
-  border-radius: var(--button-radius);
-  aspect-ratio: 2/1;
-}
-.info_vacancy {
-  display: flex;
-  gap: 40px;
+.button {
+  border-radius: var(--button-radius-sec);
 }

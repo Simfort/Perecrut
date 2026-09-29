@@ -1,9 +1,11 @@
 import styles from "./HomeHero.module.css";
 import { ABOUTS } from "../constants/about";
+import Image from "next/image";
 
 export const HomeHero = () => {
   return (
     <section className={styles.heroSection}>
+      <div className={styles.decor_1} aria-hidden></div>{" "}
       <div className={styles.heroSection__container}>
         <p className={styles.heroSection__undertitle}>
           SMART INTERVIEW SCHELDULER
@@ -27,7 +29,14 @@ export const HomeHero = () => {
         </ul>
       </div>{" "}
       <div className={styles.heroSection__example}>
-        <div className={styles.example__des} />
+        <Image
+          loading="eager"
+          src={"/heroBg2.png"}
+          className={styles.bg}
+          width={500}
+          height={500}
+          alt="Woman watch a computer"
+        />
       </div>
     </section>
   );

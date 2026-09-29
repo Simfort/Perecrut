@@ -9,7 +9,7 @@
 }
 .candidate_color {
   width: 50px;
-  border-radius: var(--button-radius);
+  border-radius: var(--button-radius-sec);
   aspect-ratio: 2/1;
   transition: 0.2s;
   color: var(--accent);
@@ -51,6 +51,7 @@
   bottom: 40px;
   flex-direction: column;
   gap: 5px;
+  z-index: 10;
 }
 .colors {
   display: flex;
@@ -63,6 +64,9 @@
 
 .active {
   border: 2px solid var(--primary);
+}
+.logo {
+  pointer-events: none;
 }
 @media screen and (max-width: 500px) {
   .button {

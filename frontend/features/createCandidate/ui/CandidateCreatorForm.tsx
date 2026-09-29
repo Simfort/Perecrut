@@ -2,7 +2,7 @@
 
 import { createCandidateAction } from "@/entities/candidates/api/createCandidateAction";
 import { useVacancy } from "@/entities/vacancies";
-
+import styles from "./CandidateCreatorForm.module.css";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 
@@ -25,8 +25,13 @@ export const CandidateCreatorForm = () => {
     }
   }, [state.success]);
   return (
-    <form action={dispatchAction}>
-      <div>
+    <form className={styles.form} action={dispatchAction}>
+      {" "}
+      <h3 className={styles.form__title}>Create candidate</h3>
+      <p className={styles.form__description}>
+        Join the selected vacancy and earn money.
+      </p>
+      <div className={styles.input_container}>
         <label htmlFor="firstname">Firstname</label>{" "}
         <input
           type="text"
@@ -36,7 +41,7 @@ export const CandidateCreatorForm = () => {
           defaultValue={state.data.firstname}
         />
       </div>
-      <div>
+      <div className={styles.input_container}>
         <label htmlFor="lastname">Lastname</label>
         <input
           type="text"
@@ -46,7 +51,7 @@ export const CandidateCreatorForm = () => {
           defaultValue={state.data.lastname}
         />
       </div>{" "}
-      <div>
+      <div className={styles.input_container}>
         <label htmlFor="description">Description</label>
         <textarea
           name="description"
@@ -55,16 +60,16 @@ export const CandidateCreatorForm = () => {
           defaultValue={state.data.description}
         />
       </div>{" "}
-      <div>
+      <div className={styles.input_container}>
         <label htmlFor="color">Color</label>
         <input
           type="color"
           name="color"
-          className={` ${state.error ? (state.error.color ? "invalid" : "valid") : ""}`}
+          className={` ${state.error ? (state.error.color ? "invalid" : "valid") : ""}  ${styles.color}`}
           defaultValue={state.data.color}
         />
       </div>
-      <button className="but-prim">Next</button>
+      <button className="but-acc">Next</button>
     </form>
   );
 };

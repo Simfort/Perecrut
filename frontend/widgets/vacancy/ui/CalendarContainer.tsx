@@ -7,13 +7,16 @@ export const CalendarContainer = () => {
   const [openFlag, setOpenFlag] = useState(false);
   return (
     <section className={styles.section}>
-      <div className={styles.decor} aria-hidden></div>
-      <button
-        onClick={() => setOpenFlag(!openFlag)}
-        className={`but-prim ${styles.button}`}
-      >
-        Open Calendar {openFlag ? <ChevronDown /> : <ChevronUp />}
-      </button>
+      <div className={styles.panel}>
+        <div className={styles.decor} aria-hidden></div>
+        <button
+          onClick={() => setOpenFlag(!openFlag)}
+          className={`but-prim ${styles.button}`}
+        >
+          Open Calendar {openFlag ? <ChevronDown /> : <ChevronUp />}
+        </button>
+      </div>
+
       {openFlag && <Calendar />}
     </section>
   );
