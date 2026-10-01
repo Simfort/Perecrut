@@ -1,22 +1,22 @@
-import { RecruterMain } from "../../src/modules/recruter/model/types.ts";
-import { RecruterService } from "../../src/modules/recruter/service.ts";
+import { RecruterMain } from "../../src/modules/recruters/model/types.ts";
+import { RecruterService } from "../../src/modules/recruters/service.ts";
 import jwt from "jsonwebtoken";
 import { describe, expect, it } from "vitest";
 import db from "../../src/shared/db/db.ts";
 import { beforeEach } from "node:test";
 
-describe("Testing recruter service", () => {
+describe("Testing recruters service", () => {
   beforeEach(() => {
     process.env.JWT_SECRET = "test";
   });
   it("return valid id after create user", async () => {
     const service = new RecruterService();
-    const data: RecruterMain = {
+    const data = {
       firstname: "Test",
       lastname: "Test",
       password: "password",
       email: "ltestvalid@gmail.com",
-    };
+    } as RecruterMain;
     db.prepare("DELETE FROM recruters WHERE email=?").run(data.email);
     const userId = await service.createUser(data);
     expect(userId).toMatch(
@@ -26,12 +26,12 @@ describe("Testing recruter service", () => {
   });
   it("return true if user login", async () => {
     const service = new RecruterService();
-    const data: RecruterMain = {
+    const data = {
       firstname: "Test",
       lastname: "Test",
       password: "password",
       email: "ltestvalid@gmail.com",
-    };
+    } as RecruterMain;
     db.prepare("DELETE FROM recruters WHERE email=?").run(data.email);
     const userId = await service.createUser(data);
     expect(userId).toMatch(
@@ -44,12 +44,12 @@ describe("Testing recruter service", () => {
   });
   it("return false if password is not valid", async () => {
     const service = new RecruterService();
-    const data: RecruterMain = {
+    const data = {
       firstname: "Test",
       lastname: "Test",
       password: "password",
       email: "ltestvalid@gmail.com",
-    };
+    } as RecruterMain;
     db.prepare("DELETE FROM recruters WHERE email=?").run(data.email);
     const userId = await service.createUser(data);
     expect(userId).toMatch(
@@ -60,12 +60,12 @@ describe("Testing recruter service", () => {
   });
   it("return true if user created and autheficated", async () => {
     const service = new RecruterService();
-    const data: RecruterMain = {
+    const data = {
       firstname: "Test",
       lastname: "Test",
       password: "password",
       email: "ltestvalid@gmail.com",
-    };
+    } as RecruterMain;
     db.prepare("DELETE FROM recruters WHERE email=?").run(data.email);
     const userId = await service.createUser(data);
     expect(userId).toMatch(
@@ -81,12 +81,12 @@ describe("Testing recruter service", () => {
   });
   it("return false if user created but token is not valid autheficated", async () => {
     const service = new RecruterService();
-    const data: RecruterMain = {
+    const data = {
       firstname: "Test",
       lastname: "Test",
       password: "password",
       email: "ltestvalid@gmail.com",
-    };
+    } as RecruterMain;
     db.prepare("DELETE FROM recruters WHERE email=?").run(data.email);
     const userId = await service.createUser(data);
     expect(userId).toMatch(
