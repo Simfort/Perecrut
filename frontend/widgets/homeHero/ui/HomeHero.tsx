@@ -31,7 +31,7 @@ export const HomeHero = () => {
       <div className={styles.heroSection__example}>
         <Image
           loading="eager"
-          src={"/heroBg2.png"}
+          src={"/heroBg.png"}
           className={styles.bg}
           width={500}
           height={500}

@@ -8,6 +8,7 @@ import { AboutVacancy } from "./AboutVacancy";
 import styles from "./Vacancy.module.css";
 import { CalendarContainer } from "./CalendarContainer";
 import { getIntervalsHours } from "@/shared/utils/getInterevalsHours";
+import { useDate } from "@/shared/lib/store/useDate";
 
 interface VacancyProps {
   promise: Promise<VacancyFormatted | false>;
@@ -16,15 +17,16 @@ interface VacancyProps {
 export const Vacancy = ({ promise }: VacancyProps) => {
   const vacancyData = use(promise);
   const { setVacancy } = useVacancy();
-
+  const { date } = useDate();
   useEffect(() => {
     if (vacancyData) {
       const times = JSON.parse(vacancyData.times);
       const colors = JSON.parse(vacancyData.colors);
       const hasTimes = Object.keys(times).length;
-      console.log(hasTimes);
-      if (!hasTimes) {
+      const dateString = date.toDateString();
+      if (!hasTimes || !times[dateString]) {
         const newData = {
+          ...times,
           [new Date().toDateString()]: getIntervalsHours(30).map((time) => ({
             [time]: "",
           })),
@@ -32,6 +34,7 @@ export const Vacancy = ({ promise }: VacancyProps) => {
         console.log(newData);
         setVacancy({ ...vacancyData, times: newData, colors });
       } else {
+        console.log(times);
         setVacancy({ ...vacancyData, times, colors });
       }
     }

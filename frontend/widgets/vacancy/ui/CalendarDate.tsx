@@ -8,11 +8,11 @@ import { useDate } from "@/shared/lib/store/useDate";
 export const CalendarDate = () => {
   const { date, setDate } = useDate();
   const { setVacancy, vacancy } = useVacancy();
-  const handleNextMonth = () => {
+  const handleNextDay = () => {
     const nextDate = new Date(
       date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
+      date.getMonth(),
+      date.getDate() + 1,
     );
     const nextDateString = nextDate.toDateString();
     const nextTimes = vacancy?.times[nextDateString];
@@ -28,11 +28,11 @@ export const CalendarDate = () => {
     }
     setDate(nextDate);
   };
-  const handleBackMonth = () => {
+  const handleBackDay = () => {
     const nextDate = new Date(
       date.getFullYear(),
-      date.getMonth() - 1,
-      date.getDate(),
+      date.getMonth(),
+      date.getDate() - 1,
     );
     const nextDateString = nextDate.toDateString();
     const nextTimes = vacancy?.times[nextDateString];
@@ -51,11 +51,11 @@ export const CalendarDate = () => {
   return (
     <div className={styles.date}>
       {" "}
-      <button onClick={handleBackMonth}>
+      <button onClick={handleBackDay}>
         <ArrowLeft size={20} />
       </button>
       <div>{date.toDateString()}</div>{" "}
-      <button onClick={handleNextMonth}>
+      <button onClick={handleNextDay}>
         <ArrowRight size={20} />
       </button>
     </div>
