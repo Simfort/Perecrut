@@ -7,6 +7,7 @@ import {
   EMAIL_IS_USED_ERROR,
   JWT_SECRET,
   NODE_ENV,
+  ONE_WEEK_IN_MILLISECONDS,
 } from "../../shared/constants.js";
 import { error } from "node:console";
 
@@ -36,7 +37,7 @@ export class RecruterController {
         sameSite: "lax",
         secure: NODE_ENV === "production",
         httpOnly: true,
-        maxAge: 7000000,
+        maxAge: ONE_WEEK_IN_MILLISECONDS,
       });
       return res.json({ message: "Success created", id: userId });
     } catch (error) {
@@ -70,7 +71,7 @@ export class RecruterController {
           sameSite: "lax",
           secure: NODE_ENV === "production",
           httpOnly: true,
-          maxAge: 7000000,
+          maxAge: ONE_WEEK_IN_MILLISECONDS,
         });
         return res.json({ message: "Success login" });
       }
@@ -88,7 +89,6 @@ export class RecruterController {
     try {
       const sessionToken =
         req.cookies["session-token"] || req.headers.authorization;
-      console.log(sessionToken);
       const auth = await this.#service?.auth(sessionToken);
       if (auth) {
         return res.status(200).json({ message: "Success auth", data: auth });

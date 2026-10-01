@@ -11,3 +11,5 @@ export const JWT_SECRET = checkENV(
 
 export const NODE_ENV = process.env.NODE_ENV;
 export const EMAIL_IS_USED_ERROR = "This email is used";
+
+export const ONE_WEEK_IN_MILLISECONDS = 604800000;
