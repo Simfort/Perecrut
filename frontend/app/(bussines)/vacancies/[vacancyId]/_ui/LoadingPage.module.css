@@ -1,0 +1,5 @@
+.page {
+  height: 100vh;
+  padding-inline: var(--padding-x);
+  padding-block: var(--padding-y);
+}

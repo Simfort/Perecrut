@@ -6,31 +6,43 @@ import { authClient } from "@/entities/recruters";
 
 interface PanelProps {
   className: string;
+  setOpenFlag?: (arg: boolean) => void;
 }
 
-export const Panel = ({ className }: PanelProps) => {
+export const Panel = ({ className, setOpenFlag }: PanelProps) => {
   const [authUser, setAuthUser] = useState();
+
+  const handleCloseModal = () => {
+    if (setOpenFlag) setOpenFlag(false);
+  };
   useEffect(() => {
-    authClient().then((authUser) => {
-      if (authUser) {
-        setAuthUser(authUser.data);
+    const auth = async () => {
+      const client = await authClient();
+      if (client) {
+        setAuthUser(client.data);
       }
-    });
+    };
+    auth();
   }, []);
 
   if (authUser)
     return (
-      <Link
-        href={"/vacancies"}
-        className={`but-prim ${styles.button_vacancies}`}
-      >
-        Vacancies
-      </Link>
+      <div className={styles[className]}>
+        <Link
+          onClick={handleCloseModal}
+          href={"/vacancies"}
+          className={`but-prim ${styles.button_vacancies}`}
+        >
+          Vacancies
+        </Link>
+      </div>
     );
   return (
     <div className={styles[className]}>
-      <Link href={"/signin"}>Sign In</Link>{" "}
-      <Link href={"/signup"} className="but-prim">
+      <Link onClick={handleCloseModal} href={"/signin"}>
+        Sign In
+      </Link>{" "}
+      <Link onClick={handleCloseModal} href={"/signup"} className="but-prim">
         Get Stareted
       </Link>
     </div>

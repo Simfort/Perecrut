@@ -40,8 +40,6 @@ export const Vacancy = ({ promise }: VacancyProps) => {
     }
   }, [vacancyData]);
 
-  if (!vacancyData) return null;
-
   return (
     <div className={styles.section}>
       <AboutVacancy />

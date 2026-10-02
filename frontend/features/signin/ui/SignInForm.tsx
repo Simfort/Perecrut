@@ -56,6 +56,7 @@ export const SignInForm = () => {
             className={`inp ${state.error ? (state.error.email ? "invalid" : "valid") : ""} ${styles.form_input}`}
             defaultValue={state.data.email}
             placeholder="example@recrut.com"
+            disabled={isPending}
           />
         </div>
       </div>
@@ -71,6 +72,7 @@ export const SignInForm = () => {
           className={`inp ${state.error ? (state.error.password ? "invalid" : "valid") : ""} ${styles.form_input}`}
           name="password"
           placeholder="Password"
+          disabled={isPending}
         />
         <button
           type="button"
@@ -83,7 +85,7 @@ export const SignInForm = () => {
       </div>
       <p className="error-text">{state.globalError}</p>
       <button disabled={isPending} type="submit" className="but-acc">
-        {isPending ? <Loader className="spin" /> : "Create account"}
+        {isPending ? <Loader className="spin" size={25} /> : "Create account"}
       </button>
       <p>
         You have account?{" "}

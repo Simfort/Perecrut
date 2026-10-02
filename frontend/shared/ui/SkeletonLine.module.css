@@ -1,0 +1,17 @@
+.line {
+  height: 150%;
+  width: 20px;
+  background-color: var(--secondary-accent);
+  filter: blur(70px);
+  transform: rotateZ(45deg);
+  animation: slide-down 1.2s linear infinite;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: rotateZ(45deg) translateY(-150%);
+  }
+  100% {
+    transform: rotateZ(45deg) translateY(150%);
+  }
+}

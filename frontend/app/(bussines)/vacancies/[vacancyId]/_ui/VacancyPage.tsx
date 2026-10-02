@@ -3,7 +3,7 @@ import styles from "./VacancyPage.module.css";
 import { getVacancy } from "@/entities/vacancies/server";
 import { auth } from "@/entities/recruters/server";
 import { Suspense } from "react";
-import { Vacancy } from "@/widgets/vacancy";
+import { SkeletonVacancy, Vacancy } from "@/widgets/vacancy";
 
 interface VacancyPageProps {
   params: Promise<{ vacancyId: string }>;
@@ -16,7 +16,7 @@ export const VacancyPage = async ({ params }: VacancyPageProps) => {
   const vacancy = getVacancy(vacancyId);
   return (
     <div className={styles.page}>
-      <Suspense fallback={"loading"}>
+      <Suspense fallback={<SkeletonVacancy />}>
         <Vacancy promise={vacancy} />
       </Suspense>
     </div>

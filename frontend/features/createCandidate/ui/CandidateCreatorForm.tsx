@@ -5,18 +5,22 @@ import { useVacancy } from "@/entities/vacancies";
 import styles from "./CandidateCreatorForm.module.css";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
+import { Loader } from "lucide-react";
 
 export const CandidateCreatorForm = () => {
   const { vacancy } = useVacancy();
-  const [state, dispatchAction] = useActionState(createCandidateAction, {
-    data: {
-      firstname: "",
-      lastname: "",
-      description: "",
-      color: "black",
+  const [state, dispatchAction, isPending] = useActionState(
+    createCandidateAction,
+    {
+      data: {
+        firstname: "",
+        lastname: "",
+        description: "",
+        color: "black",
+      },
+      vacancy_id: vacancy!.id,
     },
-    vacancy_id: vacancy!.id,
-  });
+  );
   const router = useRouter();
 
   useEffect(() => {
@@ -36,6 +40,7 @@ export const CandidateCreatorForm = () => {
         <input
           type="text"
           name="firstname"
+          disabled={isPending}
           placeholder="Linus"
           className={`inp ${state.error ? (state.error.firstname ? "invalid" : "valid") : ""}`}
           defaultValue={state.data.firstname}
@@ -46,6 +51,7 @@ export const CandidateCreatorForm = () => {
         <input
           type="text"
           name="lastname"
+          disabled={isPending}
           placeholder="Torvalds"
           className={`inp ${state.error ? (state.error.lastname ? "invalid" : "valid") : ""}`}
           defaultValue={state.data.lastname}
@@ -56,6 +62,7 @@ export const CandidateCreatorForm = () => {
         <textarea
           name="description"
           placeholder="Info about..."
+          disabled={isPending}
           className={`inp ${state.error ? (state.error.description ? "invalid" : "valid") : ""}`}
           defaultValue={state.data.description}
         />
@@ -65,11 +72,15 @@ export const CandidateCreatorForm = () => {
         <input
           type="color"
           name="color"
+          disabled={isPending}
           className={` ${state.error ? (state.error.color ? "invalid" : "valid") : ""}  ${styles.color}`}
           defaultValue={state.data.color}
         />
       </div>
-      <button className="but-acc">Next</button>
+      <button className="but-acc" disabled={isPending}>
+        {" "}
+        {isPending ? <Loader className="spin" size={25} /> : "Next"}
+      </button>
     </form>
   );
 };

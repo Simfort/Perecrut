@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.className}`}>
-      <body>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className={`${inter.className}`}>
         <Header />
         <Notificate />
         {children}

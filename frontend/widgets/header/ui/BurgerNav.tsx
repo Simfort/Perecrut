@@ -41,7 +41,7 @@ export const BurgerNav = () => {
                 {link.title}
               </Link>
             ))}{" "}
-            <Panel className="burger_panel" />
+            <Panel className="burger_panel" setOpenFlag={setOpenFlag} />
           </nav>
         </aside>
       )}

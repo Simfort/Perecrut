@@ -11,7 +11,7 @@ export const SignInPage = async () => {
     <div className={styles.page}>
       <main className={styles.main}>
         <SignInForm />
-      </main>
+      </main>{" "}
     </div>
   );
 };

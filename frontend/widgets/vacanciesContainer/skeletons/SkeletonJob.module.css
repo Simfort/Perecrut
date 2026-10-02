@@ -1,0 +1,7 @@
+.item {
+  background-color: var(--gray);
+  height: 160px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--button-radius-sec);
+}

@@ -1,17 +1,15 @@
 import styles from "./CandidatesContainer.module.css";
-import { useVacancies } from "../lib/store/useVacancies";
 import { CandidatesPanel } from "@/features/candidatesPanel";
-import { parseCandidates } from "../lib/parseCandidates";
 import { CandidateItem } from "./CandidateItem";
+import { useCurrentCandidates } from "@/features/candidatesPanel/lib/store/useCurrentCandidates";
 
 export const CandidatesContainer = () => {
-  const { vacancies } = useVacancies();
-  const candidates = parseCandidates(vacancies!);
+  const { currentCandidates } = useCurrentCandidates();
   return (
     <section className={styles.container}>
       <CandidatesPanel />
       <div className={styles.candidates}>
-        {candidates?.map((candidate, index) => (
+        {currentCandidates?.map((candidate, index) => (
           <CandidateItem key={index} candidate={candidate} />
         ))}
       </div>

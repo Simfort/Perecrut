@@ -1,7 +1,5 @@
+import { Skeleton } from "@/shared/ui/Skeleton";
+
 export default function Loading() {
-  return (
-    <div>
-      <h1>Penis</h1>
-    </div>
-  );
+  return <Skeleton />;
 }

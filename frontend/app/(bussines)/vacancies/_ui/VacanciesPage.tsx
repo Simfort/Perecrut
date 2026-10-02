@@ -5,7 +5,8 @@ import styles from "./VacanciesPage.module.css";
 import { getAll } from "@/entities/vacancies/server";
 import { Suspense } from "react";
 
-import { Header, VacanciesContainer } from "@/widgets";
+import { VacanciesContainer } from "@/widgets";
+import { SkeletonVacanciesContainer } from "@/widgets/vacanciesContainer";
 
 export const VacanciesPage = async () => {
   const authorized = await auth();
@@ -14,7 +15,7 @@ export const VacanciesPage = async () => {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Suspense fallback="loading">
+        <Suspense fallback={<SkeletonVacanciesContainer />}>
           <VacanciesContainer promise={vacancies} />
         </Suspense>
       </main>

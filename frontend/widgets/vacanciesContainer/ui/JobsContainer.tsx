@@ -1,16 +1,33 @@
-import { JobsPanel } from "@/features/jobsPanel";
+import { JobsPanel, useCurrentVacancies } from "@/features/jobsPanel";
 import styles from "./JobsContainer.module.css";
-import { useVacancies } from "../lib/store/useVacancies";
-import { JobItem } from "./JobItem";
+
+import dynamic from "next/dynamic";
+import { SkeletonJob } from "../skeletons/SkeletonJob";
+
+const JobItem = dynamic(() => import("./JobItem").then((mod) => mod.JobItem), {
+  loading: () => <SkeletonJob />,
+  ssr: false,
+});
 
 export const JobsContainer = () => {
-  const { vacancies } = useVacancies();
-
+  const { currentVacancies } = useCurrentVacancies();
+  if (!currentVacancies) {
+    return (
+      <section className={styles.container}>
+        <JobsPanel />
+        <div className={styles.jobs}>
+          {new Array(7).fill(null).map((_, index) => (
+            <SkeletonJob key={index} />
+          ))}
+        </div>
+      </section>
+    );
+  }
   return (
     <section className={styles.container}>
       <JobsPanel />
       <div className={styles.jobs}>
-        {vacancies?.map((vacancy, index) => (
+        {currentVacancies?.map((vacancy, index) => (
           <JobItem key={index} vacancy={vacancy} />
         ))}
       </div>

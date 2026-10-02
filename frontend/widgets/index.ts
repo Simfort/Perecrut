@@ -3,4 +3,8 @@ export { Header } from "./header/index";
 export { Features } from "./features/index";
 export { HowItWorks } from "./howItWorks/index";
 export { HowInterviewly } from "./howInterviewly/index";
-export { VacanciesContainer } from "./vacanciesContainer";
+export {
+  VacanciesContainer,
+  SkeletonVacanciesContainer,
+} from "./vacanciesContainer";
+export { SkeletonVacancy } from "./vacancy";

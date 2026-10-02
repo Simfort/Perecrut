@@ -65,6 +65,7 @@ export const SignUpForm = () => {
               className={`inp ${state.error ? (state.error.firstname ? "invalid" : "valid") : ""} ${styles.form_input}`}
               name="firstname"
               onChange={handleChange}
+              disabled={isPending}
               placeholder="Firstname"
             />{" "}
           </div>
@@ -78,6 +79,7 @@ export const SignUpForm = () => {
             defaultValue={state.data.lastname}
             placeholder="Lastname"
             onChange={handleChange}
+            disabled={isPending}
           />{" "}
         </div>
       </div>
@@ -91,13 +93,14 @@ export const SignUpForm = () => {
             className={`inp ${state.error ? (state.error.email ? "invalid" : "valid") : ""} ${styles.form_input}`}
             defaultValue={state.data.email}
             placeholder="example@recrut.com"
+            disabled={isPending}
           />
         </div>
       </div>
       <PasswordContainer state={state} />
       <p className="error-text">{state.globalError}</p>
       <button disabled={isPending} type="submit" className="but-acc">
-        {isPending ? <Loader className="spin" /> : "Create account"}
+        {isPending ? <Loader className="spin" size={25} /> : "Create account"}
       </button>
       <p>
         You have account?{" "}

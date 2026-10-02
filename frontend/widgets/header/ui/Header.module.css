@@ -75,7 +75,12 @@
 
   z-index: 12;
 }
-
+.loader {
+  width: 100px;
+  height: 20px;
+  background-color: var(--gray);
+  border-radius: var(--button-radius-sec);
+}
 .burger_link {
   padding: 10px;
   display: flex;

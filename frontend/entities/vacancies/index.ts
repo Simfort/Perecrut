@@ -9,3 +9,4 @@ export { createVacancyAction } from "./api/createVacancyAction";
 export { useVacancy } from "./lib/store/useVacancy";
 export type { VacancyToGetAllFormatted } from "./api/getAll";
 export type { VacancyFormattedParsed } from "./lib/store/useVacancy";
+export { useVacancies } from "./lib/store/useVacancies";

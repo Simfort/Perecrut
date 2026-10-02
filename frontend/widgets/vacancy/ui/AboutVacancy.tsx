@@ -4,22 +4,28 @@ import { Calendar, Copy, Timer } from "lucide-react";
 
 export const AboutVacancy = () => {
   const { vacancy } = useVacancy();
-  const linkText = `${process.env.NEXT_PUBLIC_CLIENT_URL}/vacancies/${vacancy?.id}/candidate`;
+  const linkText = vacancy
+    ? `${process.env.NEXT_PUBLIC_CLIENT_URL}/vacancies/${vacancy?.id}/candidate`
+    : "Vacancy link for candidate";
   const handleCopy = () => {
     navigator.clipboard.writeText(linkText);
   };
   return (
     <section className={styles.about}>
-      <h1>{vacancy?.title}</h1>
+      <h1>{vacancy?.title || "Title in process..."}</h1>
       <h4 className={styles.undertitle}>Interview with recruter</h4>
       <hr className={styles.underline} />
-      <p className={styles.description}>{vacancy?.description}</p>
+      <p className={styles.description}>
+        {vacancy?.description || "Description in process..."}
+      </p>
       <div className={styles.instructions}>
         <div className={styles.instruction}>
           <Calendar className={styles.logo} />
           <div className={styles.container_info}>
             <h6>Date</h6>
-            <p className={styles.info_text}>{vacancy?.created_at}</p>
+            <p className={styles.info_text}>
+              {vacancy?.created_at || "Your Date"}
+            </p>
           </div>
         </div>{" "}
         <div className={styles.instruction}>

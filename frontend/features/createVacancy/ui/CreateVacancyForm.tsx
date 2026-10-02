@@ -5,9 +5,13 @@ import { createVacancyAction } from "@/entities/vacancies";
 import { useNotificate } from "@/shared/lib/store/useNotificate";
 import { useRouter } from "next/navigation";
 import { parseErrorToStr } from "@/shared/utils/parseErrorToStr";
+import { Loader } from "lucide-react";
 
 export const CreateVacancyForm = () => {
-  const [state, dispatchAction] = useActionState(createVacancyAction, {});
+  const [state, dispatchAction, isPending] = useActionState(
+    createVacancyAction,
+    {},
+  );
   const { setData } = useNotificate();
   const router = useRouter();
 
@@ -44,6 +48,7 @@ export const CreateVacancyForm = () => {
           <label htmlFor="title">Job Title</label>
           <input
             type="text"
+            disabled={isPending}
             defaultValue={state.data?.title}
             name="title"
             placeholder="Senior Frontend Developer"
@@ -54,6 +59,7 @@ export const CreateVacancyForm = () => {
           <label htmlFor="organization">Organization</label>
           <input
             type="text"
+            disabled={isPending}
             defaultValue={state.data?.organization}
             name="organization"
             placeholder="OOO 'RAI'"
@@ -65,6 +71,7 @@ export const CreateVacancyForm = () => {
         <div className={styles.input_container}>
           <label htmlFor="salary_min">Salary Min</label>
           <input
+            disabled={isPending}
             type="number"
             defaultValue={state.data?.salary_min}
             name="salary_min"
@@ -80,6 +87,7 @@ export const CreateVacancyForm = () => {
             name="salary_max"
             defaultValue={state.data?.salary_max}
             placeholder="120k"
+            disabled={isPending}
             min={0}
             className={`inp ${state.error ? (state.error.salary_max ? "invalid" : "valid") : ""}`}
           />{" "}
@@ -89,6 +97,7 @@ export const CreateVacancyForm = () => {
           <select
             form="create-vacancy-form"
             name="emp_type"
+            disabled={isPending}
             className={`inp ${state.error ? (state.error.emp_type ? "invalid" : "valid") : ""}`}
           >
             <option value="Full-time">Full-time</option>
@@ -100,13 +109,17 @@ export const CreateVacancyForm = () => {
       <div className={styles.input_container}>
         <label htmlFor="description">Description</label>
         <textarea
+          disabled={isPending}
           className={`inp ${state.error ? (state.error.description ? "invalid" : "valid") : ""}`}
           name="description"
           defaultValue={state.data?.description}
           placeholder="About job..."
         />
       </div>
-      <button className="but-acc">Create</button>
+      <button className="but-acc">
+        {" "}
+        {isPending ? <Loader className="spin" size={25} /> : "Create"}
+      </button>
     </form>
   );
 };
