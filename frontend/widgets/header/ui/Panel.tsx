@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import styles from "./Header.module.css";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { authClient } from "@/entities/recruters";
 
 interface PanelProps {

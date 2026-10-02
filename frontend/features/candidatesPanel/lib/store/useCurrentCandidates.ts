@@ -1,4 +1,3 @@
-import { VacancyToGetAllFormatted } from "@/entities/vacancies";
 import { create } from "zustand";
 
 type Candidates = {
