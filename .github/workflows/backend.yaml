@@ -1,37 +1,57 @@
 name: Backend
+
 on: push
+
 jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      JWT_SECRET: Secret
+
     steps:
-      - env:
-        JWT_SECRET: Secret
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@latest
+
       - name: Install deps
-        run: cd ./backend && npm i
+        working-directory: ./backend
+        run: npm ci
+
       - name: Lint
-        run: cd ./backend && npm run lint
+        working-directory: ./backend
+        run: npm run lint
+
       - name: Build project
-        run: cd ./backend && npm run build
+        working-directory: ./backend
+        run: npm run build
 
       - name: Start Node.js server in background
-        run: cd ./backend && npm start
+        working-directory: ./backend
+        run: |
+          npm start &
+          echo $! > server.pid
 
       - name: Wait for server to be ready
         run: |
           for i in {1..30}; do
             if curl -s http://localhost:3000 >/dev/null 2>&1; then
               echo "Server is up"
-              break
+              exit 0
             fi
-            echo "Waiting for server..."
+            echo "Waiting for server... ($i/30)"
             sleep 2
           done
-          if [ $i -eq 30 ]; then
-            echo "Server never started"
-            exit 1
-          fi
+          echo "Server never started"
+          exit 1
+
       - name: Run tests
-        run: cd ./backend && npm run test
+        working-directory: ./backend
+        run: npm run test
+
+      - name: Stop server
+        if: always()
+        working-directory: ./backend
+        run: |
+          if [ -f server.pid ]; then
+            kill $(cat server.pid) || true
+          fi
