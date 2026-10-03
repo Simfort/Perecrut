@@ -9,24 +9,28 @@ export class RecruterService {
   async createUser(data: Omit<RecruterMain, "id">) {
     const hashPassword = await bcrypt.hash(data.password, 10);
     const userId = randomUUID();
-    db.prepare(
+    await db.run(
       `--sql
       INSERT INTO recruters (id,firstname,lastname,password,email)
       VALUES(?,?,?,?,?)
       `,
-    ).run(userId, data.firstname, data.lastname, hashPassword, data.email);
+      userId,
+      data.firstname,
+      data.lastname,
+      hashPassword,
+      data.email,
+    );
     return userId;
   }
   async loginUser(data: Pick<RecruterMain, "password" | "email">) {
-    const dataFinded = db
-      .prepare(
-        `--sql
+    const dataFinded = (await db.get(
+      `--sql
       SELECT id,password FROM recruters
       WHERE email=?
       `,
-      )
-      .get(data.email) as Pick<RecruterMain, "password" | "id">;
-    console.log(dataFinded, data.password);
+      data.email,
+    )) as Pick<RecruterMain, "password" | "id">;
+
     if (!dataFinded?.password) return false;
     const isCompared = await bcrypt.compare(data.password, dataFinded.password);
     return isCompared ? dataFinded.id : false;
@@ -35,13 +39,12 @@ export class RecruterService {
     if (!token) return false;
     const data = jwt.verify(token, JWT_SECRET) as RecruterJWT;
 
-    const authData = db
-      .prepare(
-        `--sql
+    const authData = (await db.get(
+      `--sql
       SELECT id,email FROM recruters 
       WHERE email=?`,
-      )
-      .get(data.email) as RecruterJWT;
+      data.email,
+    )) as RecruterJWT;
 
     return authData;
   }

@@ -28,7 +28,7 @@ export class VacanciesController {
           times,
           interval: 30,
         };
-        const vacancyId = this.#service?.create(validData, authorized.id);
+        const vacancyId = await this.#service?.create(validData, authorized.id);
 
         return res
           .status(200)
@@ -47,7 +47,7 @@ export class VacanciesController {
   async getVacancy(req: Request, res: Response) {
     try {
       const vacancyId = req.params.id as string;
-      const vacancy = this.#service?.getVacancy(vacancyId);
+      const vacancy = await this.#service?.getVacancy(vacancyId);
       if (vacancy) {
         return res
           .status(200)
@@ -67,7 +67,7 @@ export class VacanciesController {
       const authorized = await recrutersService.auth(sessionToken);
 
       if (authorized) {
-        const vacancies = this.#service?.getAll(authorized.id);
+        const vacancies = await this.#service?.getAll(authorized.id);
 
         return res
           .status(200)
@@ -87,7 +87,7 @@ export class VacanciesController {
       const recrutersService = new RecruterService();
       const authorized = await recrutersService.auth(sessionToken);
       if (authorized) {
-        this.#service?.delete(vacancyId);
+        await this.#service?.delete(vacancyId);
         return res
           .status(200)
           .json({ message: "Vacancies success getted!", data: vacancyId });
@@ -102,7 +102,7 @@ export class VacanciesController {
     try {
       const data = req.body;
       const validData = ValidUpdateVacancy.parse(data) as VacancyMain;
-      const vacancyId = this.#service?.update(validData);
+      const vacancyId = await this.#service?.update(validData);
       if (vacancyId) {
         return res
           .status(200)

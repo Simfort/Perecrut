@@ -9,14 +9,13 @@ import type {
 } from "./model/types.js";
 
 export class VacanciesService {
-  create(data: VacancyMain, recruter_id: string) {
+  async create(data: VacancyMain, recruter_id: string) {
     const vacancyId = randomBytes(8).toString("base64url");
-    db.prepare(
+    await db.run(
       `--sql
         INSERT INTO vacancies (id,title,description,organization,salary_max,salary_min,emp_type,recruter_id,times)
         VALUES (?,?,?,?,?,?,?,?,?)
         `,
-    ).run(
       vacancyId,
       data.title,
       data.description,
@@ -27,23 +26,27 @@ export class VacanciesService {
       recruter_id,
       data.times,
     );
+
     return vacancyId;
   }
-  update(data: VacancyMain) {
-    db.prepare(
+  async update(data: VacancyMain) {
+    await db.run(
       `--sql
       UPDATE vacancies
       SET colors = ? , times = ?, interval=?
       WHERE id = ?
       `,
-    ).run(data.colors, data.times, data.interval, data.id);
+      data.colors,
+      data.times,
+      data.interval,
+      data.id,
+    );
 
     return data.id;
   }
-  getVacancy(id: string) {
-    const result = db
-      .prepare(
-        `--sql
+  async getVacancy(id: string) {
+    const result = (await db.all(
+      `--sql
       SELECT v.created_at,v.description,v.id,v.times,v.colors,v.interval,v.title,c.firstname,c.lastname,c.color,c.id as candidate_id
       FROM vacancies as v
      LEFT JOIN  candidates as c
@@ -51,8 +54,8 @@ export class VacanciesService {
       WHERE v.id = ? 
   
       `,
-      )
-      .all(id) as VacancyWithCandidate[];
+      id,
+    )) as VacancyWithCandidate[];
     const vacancy = {
       id: result[0].id,
       interval: result[0].interval,
@@ -75,10 +78,9 @@ export class VacanciesService {
 
     return vacancy;
   }
-  getAll(recruter_id: string) {
-    const result = db
-      .prepare(
-        `--sql
+  async getAll(recruter_id: string) {
+    const result = (await db.all(
+      `--sql
       SELECT v.description,
       v.created_at,
       v.id,
@@ -96,9 +98,9 @@ export class VacanciesService {
       ON v.id = c.vacancy_id
       WHERE v.recruter_id = ? 
       `,
-      )
-      .all(recruter_id) as VacancyToGetAll[];
-    console.log(result);
+      recruter_id,
+    )) as VacancyToGetAll[];
+
     const vacancies: VacancyToGetAllFormatted[] = [];
     for (const vacancy of result) {
       const vacancyFormatted = {
@@ -126,13 +128,14 @@ export class VacanciesService {
     return vacancies;
   }
 
-  delete(id: string) {
-    db.prepare(
+  async delete(id: string) {
+    await db.run(
       `--sql
         DELETE FROM vacancies
         WHERE id = ?
       `,
-    ).run(id);
+      id,
+    );
     return id;
   }
 }

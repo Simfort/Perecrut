@@ -26,12 +26,11 @@
     "eslint": "^10.9.1",
     "globals": "^17.12.0",
     "jiti": "^2.7.0",
-    "typescript-eslint": "^8.69.0",
-    "vitest": "^5.0.0"
+    "typescript-eslint": "^8.69.0"
   },
   "dependencies": {
+    "@tursodatabase/serverless": "^1.4.0",
     "bcrypt": "^6.0.0",
-    "better-sqlite3": "^13.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
