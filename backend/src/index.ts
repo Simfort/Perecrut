@@ -1,5 +1,5 @@
 import express from "express";
-import { PORT } from "./shared/constants.js";
+import { CLIENT_URL, PORT } from "./shared/constants.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { routerRecruter } from "./modules/recruters/route.js";
@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: CLIENT_URL,
     credentials: true,
   }),
 );

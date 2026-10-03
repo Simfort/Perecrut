@@ -16,6 +16,10 @@ export const TURSO_AUTH_TOKEN = checkENV(
   "TURSO_AUTH_TOKEN IS UNDEFINED",
   process.env.TURSO_AUTH_TOKEN,
 );
+export const CLIENT_URL = checkENV(
+  "CLIENT_URL IS UNDEFINED",
+  process.env.CLIENT_URL,
+);
 
 export const NODE_ENV = process.env.NODE_ENV;
 export const EMAIL_IS_USED_ERROR = "This email is used";
