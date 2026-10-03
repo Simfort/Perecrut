@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("perecrut-tz2d.vercel.app"),
+  metadataBase: "https://perecrut-tz2d.vercel.app",
   title: {
     default: "Perecrut",
     template: "%s | Perecrut",
