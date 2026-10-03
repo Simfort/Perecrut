@@ -34,7 +34,6 @@ export class RecruterController {
         { expiresIn: "7d" },
       );
       res.cookie("session-token", jwtToken, {
-        sameSite: "lax",
         secure: NODE_ENV === "production",
         httpOnly: true,
         maxAge: ONE_WEEK_IN_MILLISECONDS,
