@@ -6,7 +6,6 @@ import jwt from "jsonwebtoken";
 import {
   EMAIL_IS_USED_ERROR,
   JWT_SECRET,
-  NODE_ENV,
   ONE_WEEK_IN_MILLISECONDS,
 } from "../../shared/constants.js";
 import { error } from "node:console";
