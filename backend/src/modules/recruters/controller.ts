@@ -2,12 +2,8 @@ import type { Request, Response } from "express";
 import { ValidSignupRecruter, ValidSigninRecruter } from "./model/valid.js";
 import type { RecruterService } from "./service.js";
 import { ZodError } from "zod";
-import jwt from "jsonwebtoken";
-import {
-  EMAIL_IS_USED_ERROR,
-  JWT_SECRET,
-  ONE_WEEK_IN_MILLISECONDS,
-} from "../../shared/constants.js";
+
+import { EMAIL_IS_USED_ERROR } from "../../shared/constants.js";
 import { error } from "node:console";
 
 export class RecruterController {
@@ -24,20 +20,7 @@ export class RecruterController {
       const successData = ValidSignupRecruter.parse(data);
 
       const userId = await this.#service?.createUser(successData);
-      const jwtToken = jwt.sign(
-        {
-          email: successData.email,
-          id: userId,
-        },
-        JWT_SECRET,
-        { expiresIn: "7d" },
-      );
-      res.cookie("session-token", jwtToken, {
-        secure: true,
-        sameSite: "none",
-        httpOnly: true,
-        maxAge: ONE_WEEK_IN_MILLISECONDS,
-      });
+
       return res.json({ message: "Success created", id: userId });
     } catch (error) {
       console.error(error);
@@ -61,17 +44,6 @@ export class RecruterController {
       const successData = ValidSigninRecruter.parse(data);
       const loginedData = await this.#service?.loginUser(successData);
       if (loginedData) {
-        const jwtToken = jwt.sign(
-          { id: loginedData, email: successData.email },
-          JWT_SECRET,
-          { expiresIn: "7d" },
-        );
-        res.cookie("session-token", jwtToken, {
-          secure: true,
-          sameSite: "none",
-          httpOnly: true,
-          maxAge: ONE_WEEK_IN_MILLISECONDS,
-        });
         return res.json({ message: "Success login" });
       }
       return res.status(403).json({ error: "Error credentials" });
