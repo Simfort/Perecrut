@@ -18,8 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use("/recruters", routerRecruter);
-app.use("/vacancies", routerVacancies);
-app.use("/candidates/:vacancyId", routerCandidates);
+app.use("/api/recruters", routerRecruter);
+app.use("/api/vacancies", routerVacancies);
+app.use("/api/candidates/:vacancyId", routerCandidates);
 
 app.listen(PORT, () => console.log(`https://localhost:${PORT}`));
