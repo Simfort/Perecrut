@@ -1,8 +1,15 @@
+"use server";
 import { ZodError } from "zod";
 import { Recruter } from "../model/recruter";
 import { ValidSigninRecruter } from "./schemas";
 import { parseZodError, Paths } from "@/shared/utils/parseZodError";
-import { BACKEND_URL } from "@/shared/constants";
+import {
+  BACKEND_URL,
+  JWT_SECRET,
+  SESSION_COOKIE_CONFIG,
+} from "@/shared/constants";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
 type RecrutersFields = "email" | "password";
 type RecruterMain = Pick<Recruter, RecrutersFields>;
@@ -29,8 +36,6 @@ export const loginUserAction = async (
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(validData),
       method: "POST",
-
-      credentials: "include",
     });
     const responseData = await response.json();
 
@@ -48,7 +53,12 @@ export const loginUserAction = async (
           globalError: "Unknown error :/",
         };
     }
-
+    const cookieStore = await cookies();
+    const jwtToken = jwt.sign(
+      { email: validData.email, id: responseData.id },
+      JWT_SECRET,
+    );
+    cookieStore.set("session-token", jwtToken, SESSION_COOKIE_CONFIG);
     return { data: validData, success: true };
   } catch (error) {
     if (error instanceof ZodError) {
