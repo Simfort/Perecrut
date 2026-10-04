@@ -3,13 +3,10 @@ import { ZodError } from "zod";
 import { Recruter } from "../model/recruter";
 import { ValidSigninRecruter } from "./schemas";
 import { parseZodError, Paths } from "@/shared/utils/parseZodError";
-import {
-  BACKEND_URL,
-  JWT_SECRET,
-  SESSION_COOKIE_CONFIG,
-} from "@/shared/constants";
+import { BACKEND_URL, SESSION_COOKIE_CONFIG } from "@/shared/constants";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "@/shared/server-constants";
 
 type RecrutersFields = "email" | "password";
 type RecruterMain = Pick<Recruter, RecrutersFields>;
