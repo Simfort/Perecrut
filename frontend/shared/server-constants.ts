@@ -1,4 +1,3 @@
-"use server";
 import { checkENV } from "./utils/checkENV";
 
 export const JWT_SECRET = checkENV(
